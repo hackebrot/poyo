@@ -8,7 +8,7 @@ help:
 clean: clean-tox clean-build clean-py
 
 clean-tox:
-	rm -r .tox/
+	rm -rf .tox/
 
 clean-build:
 	rm -rf build/
