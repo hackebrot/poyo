@@ -26,7 +26,7 @@ Usage
 Example
 -------
 
-In:
+In (YAML):
 
 .. code-block:: yaml
 
@@ -47,7 +47,7 @@ In:
         gh: https://github.com/{0}.git
     "Yay #python": Cool!
 
-Out:
+Out (Python):
 
 .. code-block:: python
 
