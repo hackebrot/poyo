@@ -1,0 +1,16 @@
+default_context: # foobar
+    greeting: こんにちは
+    email: "raphael@hackebrot.de"
+    docs: true
+    gui: FALSE
+    123: 456.789
+    foo: "hallo #welt" #Make sure to understand inline comments
+
+
+# Block
+# Comment
+
+Hello World:
+    null: This is madness #yeah
+    gh: https://github.com/{0}.git
+"Yay #python": Cool!
