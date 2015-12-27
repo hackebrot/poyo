@@ -116,7 +116,6 @@ class _Parser(object):
                 match = pattern.match(self.source, pos=self.pos)
 
                 if not match:
-                    # None of the rules apply to the input
                     continue
 
                 self.pos = match.end()
