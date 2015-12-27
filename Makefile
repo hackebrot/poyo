@@ -5,7 +5,10 @@ help:
 	@echo "clean-py - remove Python file artifacts"
 	@echo "clean- remove all file artifacts"
 
-clean: clean-build clean-py
+clean: clean-tox clean-build clean-py
+
+clean-tox:
+	rm -r .tox/
 
 clean-build:
 	rm -rf build/
