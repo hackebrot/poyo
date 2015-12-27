@@ -29,8 +29,8 @@ class _Parser(object):
             (re.compile(NULL), self.parse_null),
             (re.compile(TRUE), self.parse_true),
             (re.compile(FALSE), self.parse_false),
-            (re.compile(INT), self.parse_int),
             (re.compile(FLOAT), self.parse_float),
+            (re.compile(INT), self.parse_int),
             (re.compile(STR), self.parse_str),
         )
 
