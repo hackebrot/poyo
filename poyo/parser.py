@@ -3,6 +3,7 @@
 import re
 
 from ._nodes import Root, Section, Simple
+from .exceptions import NoMatchException, NoParentException, NoTypeException
 from .patterns import (
     COMMENT, BLANK_LINE, SECTION, SIMPLE,
     NULL, TRUE, FALSE, INT, FLOAT, STR
@@ -38,7 +39,9 @@ class _Parser(object):
         for candidate in reversed(self.seen):
             if candidate.level < level:
                 return candidate
-        raise RuntimeError('Unable to find element at level {}'.format(level))
+        raise NoParentException(
+            'Unable to find element at level {}'.format(level)
+        )
 
     def read_from_tag(self, string):
         for pattern, callback in self.tag_rules:
@@ -51,7 +54,9 @@ class _Parser(object):
                 raise ValueError
             return callback(match)
 
-        raise RuntimeError('Unable to determine type for "{}"'.format(string))
+        raise NoTypeException(
+            'Unable to determine type for "{}"'.format(string)
+        )
 
     def parse_comment(self, match):
         pass
@@ -118,7 +123,10 @@ class _Parser(object):
                 callback(match)
                 break
             else:
-                raise RuntimeError('None of the known patterns match')
+                raise NoMatchException(
+                    'None of the known patterns match for {}'
+                    ''.format(self.source[self.pos:])
+                )
 
         return self.root()
 
