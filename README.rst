@@ -67,6 +67,13 @@ Out:
         u'Yay #python': u'Cool!'
     }
 
+Issues
+------
+
+If you encounter any problems, please `file an issue`_ along with a detailed description.
+
+.. _`file an issue`: https://github.com/hackebrot/poyo/issues
+
 Code of Conduct
 ---------------
 
