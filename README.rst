@@ -2,7 +2,13 @@
 Poyo
 ====
 
+|travis-ci|
+
 A YAML Parser for Python
+
+.. |travis-ci| image:: https://travis-ci.org/hackebrot/poyo.svg?branch=master
+    :target: https://travis-ci.org/hackebrot/poyo
+    :alt: See Build Status on Travis CI
 
 Usage
 -----

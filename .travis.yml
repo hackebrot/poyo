@@ -1,0 +1,24 @@
+# Config file for automatic testing at travis-ci.org
+
+sudo: false
+language: python
+python: 3.5
+env:
+    - TOX_ENV=py27
+    - TOX_ENV=py33
+    - TOX_ENV=py34
+    - TOX_ENV=py35
+    - TOX_ENV=pypy
+    - TOX_ENV=flake8
+
+install:
+    - pip install tox
+
+script: tox -e $TOX_ENV
+
+before_cache:
+  - rm -rf $HOME/.cache/pip/log
+
+cache:
+  directories:
+    - $HOME/.cache/pip
