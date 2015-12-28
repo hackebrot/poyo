@@ -23,6 +23,7 @@ def test_parse_string(string_data):
             u'someint': 1000000,
             u'foo': u'hallo #welt',
         },
+        u'zZz': True,
         u'Hello World': {
             None: u'This is madness',
             u'gh': u'https://github.com/{0}.git',

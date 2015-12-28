@@ -68,6 +68,7 @@ In (YAML):
         123: 456.789
         someint: 1000000
         foo: "hallo #welt" #Inline comment :)
+    zZz: True
 
 
     # Block
@@ -92,6 +93,7 @@ Out (Python):
             u'someint': 1000000,
             u'foo': u'hallo #welt',
         },
+        u'zZz': True,
         u'Hello World': {
             None: u'This is madness',
             u'gh': u'https://github.com/{0}.git',
