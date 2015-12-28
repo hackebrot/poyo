@@ -13,6 +13,9 @@ A YAML Parser for Python
 Usage
 -----
 
+Poyo comes with a neat function, named ``parse_string()``, to parse string data
+into a Python dict.
+
 .. code-block:: python
 
     import codecs
@@ -22,6 +25,9 @@ Usage
     with codecs.open('foobar.yml', encoding='utf-8') as ymlfile:
         config = poyo.parse_string(ymlfile.read())
 
+Please note that Poyo only supports a limited set of YAML features.
+
+See the example below to get a better idea of what Poyo is able to understand.
 
 Example
 -------
@@ -66,6 +72,15 @@ Out (Python):
         },
         u'Yay #python': u'Cool!'
     }
+
+WHY?!
+-----
+
+Because a couple of `cookiecutter`_ users, including myself, ran into issues
+when installing well-known YAML parsers for Python on various platforms and
+Python versions.
+
+.. _`cookiecutter`: https://github.com/audreyr/cookiecutter
 
 Issues
 ------
