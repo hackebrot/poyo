@@ -67,14 +67,14 @@ In (YAML):
         gui: FALSE
         123: 456.789
         someint: 1000000
-        foo: "hallo #welt" #Make sure to understand inline comments
+        foo: "hallo #welt" #Inline comment :)
 
 
     # Block
     # Comment
 
     Hello World:
-        null: This is madness #yeah
+        null: This is madness   # yo
         gh: https://github.com/{0}.git
     "Yay #python": Cool!
 
