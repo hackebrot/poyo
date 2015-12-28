@@ -2,13 +2,37 @@
 Poyo
 ====
 
-|travis-ci|
+|pypi| |pyversions| |license| |travis-ci|
 
 A YAML Parser for Python
+
+.. |pypi| image:: https://img.shields.io/pypi/v/poyo.svg
+   :target: https://pypi.python.org/pypi/poyo
+   :alt: PyPI Package
+
+.. |pyversions| image:: https://img.shields.io/pypi/pyversions/poyo.svg
+   :target: https://pypi.python.org/pypi/poyo/
+   :alt: PyPI Python Versions
+
+.. |license| image:: https://img.shields.io/pypi/l/poyo.svg
+   :target: https://pypi.python.org/pypi/poyo
+   :alt: PyPI Package License
 
 .. |travis-ci| image:: https://travis-ci.org/hackebrot/poyo.svg?branch=master
     :target: https://travis-ci.org/hackebrot/poyo
     :alt: See Build Status on Travis CI
+
+Installation
+------------
+
+**poyo** is available for download from `PyPI`_ via `pip`_::
+
+    $ pip install poyo
+
+.. _`PyPI`: https://pypi.python.org/pypi
+.. _`pip`: https://pypi.python.org/pypi/pip/
+
+**Poyo is 100% Python and does not require any additional libs.**
 
 Usage
 -----
