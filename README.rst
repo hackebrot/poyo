@@ -66,6 +66,7 @@ In (YAML):
         docs: true
         gui: FALSE
         123: 456.789
+        someint: 1000000
         foo: "hallo #welt" #Make sure to understand inline comments
 
 
@@ -88,6 +89,7 @@ Out (Python):
             u'docs': True,
             u'gui': False,
             123: 456.789,
+            u'someint': 1000000,
             u'foo': u'hallo #welt',
         },
         u'Hello World': {

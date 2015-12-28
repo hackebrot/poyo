@@ -20,6 +20,7 @@ def test_parse_string(string_data):
             u'docs': True,
             u'gui': False,
             123: 456.789,
+            u'someint': 1000000,
             u'foo': u'hallo #welt',
         },
         u'Hello World': {

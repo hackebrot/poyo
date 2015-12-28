@@ -4,6 +4,7 @@ default_context: # foobar
     docs: true
     gui: FALSE
     123: 456.789
+    someint: 1000000
     foo: "hallo #welt" #Make sure to understand inline comments
 
 
