@@ -68,8 +68,9 @@ In (YAML):
         123: 456.789
         someint: 1000000
         foo: "hallo #welt" #Inline comment :)
+        trueish: Falseeeeeee
     zZz: True
-
+    NullValue: Null
 
     # Block
     # Comment
@@ -92,8 +93,10 @@ Out (Python):
             123: 456.789,
             u'someint': 1000000,
             u'foo': u'hallo #welt',
+            u'trueish': u'Falseeeeeee',
         },
         u'zZz': True,
+        u'NullValue': None,
         u'Hello World': {
             None: u'This is madness',
             u'gh': u'https://github.com/{0}.git',
