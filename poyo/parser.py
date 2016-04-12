@@ -5,7 +5,7 @@ import re
 from ._nodes import Root, Section, Simple
 from .exceptions import NoMatchException, NoParentException, NoTypeException
 from .patterns import (
-    COMMENT, BLANK_LINE, SECTION, SIMPLE,
+    COMMENT, BLANK_LINE, DASHES, SECTION, SIMPLE,
     NULL, TRUE, FALSE, INT, FLOAT, STR
 )
 
@@ -22,6 +22,7 @@ class _Parser(object):
         self.rules = (
             (re.compile(COMMENT, re.MULTILINE), self.parse_comment),
             (re.compile(BLANK_LINE, re.MULTILINE), self.parse_blankline),
+            (re.compile(DASHES, re.MULTILINE), self.parse_dashes),
             (re.compile(SIMPLE, re.MULTILINE), self.parse_simple),
             (re.compile(SECTION, re.MULTILINE), self.parse_section),
         )
@@ -62,6 +63,9 @@ class _Parser(object):
         pass
 
     def parse_blankline(self, match):
+        pass
+
+    def parse_dashes(self, match):
         pass
 
     def parse_simple(self, match):

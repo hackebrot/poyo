@@ -1,3 +1,4 @@
+---
 default_context: # foobar
     greeting: こんにちは
     email: "raphael@hackebrot.de"
