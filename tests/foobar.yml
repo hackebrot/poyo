@@ -8,6 +8,10 @@ default_context: # foobar
     someint: 1000000
     foo: "hallo #welt" #Inline comment :)
     trueish: Falseeeeeee
+    doc_tools:
+        -    mkdocs
+        - 'sphinx'
+        - null
 zZz: True
 NullValue: Null
 

@@ -70,6 +70,10 @@ In (YAML):
         someint: 1000000
         foo: "hallo #welt" #Inline comment :)
         trueish: Falseeeeeee
+        doc_tools:
+            -    mkdocs
+            - 'sphinx'
+            - null
     zZz: True
     NullValue: Null
 
@@ -95,6 +99,7 @@ Out (Python):
             u'someint': 1000000,
             u'foo': u'hallo #welt',
             u'trueish': u'Falseeeeeee',
+            u'doc_tools': [u'mkdocs', u'sphinx', None],
         },
         u'zZz': True,
         u'NullValue': None,
