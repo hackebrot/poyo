@@ -5,8 +5,8 @@ import re
 from ._nodes import Root, Section, Simple
 from .exceptions import NoMatchException, NoParentException, NoTypeException
 from .patterns import (
-    COMMENT, BLANK_LINE, DASHES, SECTION, SIMPLE,
-    NULL, TRUE, FALSE, INT, FLOAT, STR
+    BLANK_LINE, COMMENT, DASHES, FALSE, FLOAT, INT,
+    LIST, LISTITEM, NULL, SECTION, SIMPLE, STR, TRUE,
 )
 
 
@@ -23,6 +23,7 @@ class _Parser(object):
             (re.compile(COMMENT, re.MULTILINE), self.parse_comment),
             (re.compile(BLANK_LINE, re.MULTILINE), self.parse_blankline),
             (re.compile(DASHES, re.MULTILINE), self.parse_dashes),
+            (re.compile(LIST, re.MULTILINE), self.parse_list),
             (re.compile(SIMPLE, re.MULTILINE), self.parse_simple),
             (re.compile(SECTION, re.MULTILINE), self.parse_section),
         )
@@ -67,6 +68,26 @@ class _Parser(object):
 
     def parse_dashes(self, match):
         pass
+
+    def parse_list(self, match):
+        groups = match.groupdict()
+        level = len(groups['indent'])
+        parent = self.find_at_level(level)
+
+        item_matches = re.findall(LISTITEM, groups['items'], re.MULTILINE)
+
+        list_items = [
+            self.read_from_tag(value)
+            for value, _ in item_matches
+        ]
+
+        simple = Simple(
+            self.read_from_tag(groups['variable']),
+            level,
+            list_items,
+            parent=parent
+        )
+        self.seen.append(simple)
 
     def parse_simple(self, match):
         groups = match.groupdict()
