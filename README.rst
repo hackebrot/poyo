@@ -60,6 +60,7 @@ In (YAML):
 
 .. code-block:: yaml
 
+    ---
     default_context: # foobar
         greeting: こんにちは
         email: "raphael@hackebrot.de"
