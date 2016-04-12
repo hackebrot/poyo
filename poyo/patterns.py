@@ -2,10 +2,10 @@
 
 INDENT = r"(?P<indent>^ *)"
 VARIABLE = r"(?P<variable>.+):"
-VALUE = r"(?P<value>((?P<q2>['\"]).*?(?P=q2))|[^#]+?)"
+VALUE = r"(?P<value>(?:(?P<q2>['\"]).*?(?P=q2))|[^#]+?)"
 NEWLINE = r"$\n"
 BLANK = r" +"
-INLINE_COMMENT = r"( +#.*)?"
+INLINE_COMMENT = r"(?: +#.*)?"
 
 COMMENT = r"^ *#.*" + NEWLINE
 BLANK_LINE = r"^[ \t]*" + NEWLINE
