@@ -14,6 +14,9 @@ DASHES = r"^---" + NEWLINE
 SECTION = INDENT + VARIABLE + INLINE_COMMENT + NEWLINE
 SIMPLE = INDENT + VARIABLE + BLANK + VALUE + INLINE_COMMENT + NEWLINE
 
+LISTITEM = BLANK + r"-" + BLANK + VALUE + INLINE_COMMENT + NEWLINE
+LIST = SECTION + r"(?P<items>(?:(?P=indent)" + LISTITEM + r")+)"
+
 NULL = r"\b(null|Null|NULL|~)\b"
 TRUE = r"\b(true|True|TRUE)\b"
 FALSE = r"\b(false|False|FALSE)\b"
