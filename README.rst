@@ -6,8 +6,8 @@ Poyo
 
 A minimal YAML Parser for Python
 
-**Please note that Poyo does and will have limitations. It can read only a
-chosen subset of YAML and is not JSON compatible.**
+**Please note that Poyo supports only a chosen subset of the YAML format. It
+can only read but not write and is not compatible with JSON.**
 
 See the examples below to get an idea of what Poyo understands.
 
