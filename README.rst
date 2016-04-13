@@ -6,8 +6,9 @@ Poyo
 
 A minimal YAML Parser for Python
 
-**Please note that Poyo supports only a chosen subset of the YAML format. It
-can only read but not write and is not compatible with JSON.**
+**Please note that Poyo supports only a chosen subset of the YAML format.**
+
+**It can only read but not write and is not compatible with JSON.**
 
 See the examples below to get an idea of what Poyo understands.
 
@@ -38,22 +39,32 @@ Installation
 .. _`PyPI`: https://pypi.python.org/pypi
 .. _`pip`: https://pypi.python.org/pypi/pip/
 
-**Poyo is 100% Python and does not require any additional libs.**
+Poyo is 100% Python and does not require any additional libs.
 
 Usage
 -----
 
-Poyo comes with a neat function, named ``parse_string()``, to parse string data
-into a Python dict.
+Poyo comes with a ``parse_string()`` function, to load utf-8 encoded string
+data into a Python dict.
 
 .. code-block:: python
 
     import codecs
+    import logging
 
-    import poyo
+    from poyo import parse_string, PoyoException
 
-    with codecs.open('foobar.yml', encoding='utf-8') as ymlfile:
-        config = poyo.parse_string(ymlfile.read())
+    logging.basicConfig(level=logging.DEBUG)
+
+    with codecs.open('tests/foobar.yml', encoding='utf-8') as ymlfile:
+        ymlstring = ymlfile.read()
+
+    try:
+        config = parse_string(ymlstring)
+    except PoyoException as exc:
+        logging.error(exc)
+    else:
+        logging.debug(config)
 
 Example
 -------
@@ -124,7 +135,8 @@ Python versions.
 Issues
 ------
 
-If you encounter any problems, please `file an issue`_ along with a detailed description.
+If you encounter any problems, please `file an issue`_ along with a detailed
+description.
 
 .. _`file an issue`: https://github.com/hackebrot/poyo/issues
 
@@ -139,7 +151,8 @@ rooms, and mailing lists is expected to follow the `PyPA Code of Conduct`_.
 License
 -------
 
-Distributed under the terms of the `MIT`_ license, poyo is free and open source software
+Distributed under the terms of the `MIT`_ license, poyo is free and open source
+software.
 
 .. image:: https://opensource.org/trademarks/osi-certified/web/osi-certified-120x100.png
    :align: left
