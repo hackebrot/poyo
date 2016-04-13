@@ -4,7 +4,13 @@ Poyo
 
 |pypi| |pyversions| |license| |travis-ci|
 
-A YAML Parser for Python
+A minimal YAML Parser for Python
+
+**Please note that Poyo does and will have limitations. It can read only a
+chosen subset of YAML and is not JSON compatible.**
+
+See the examples below to get an idea of what Poyo understands.
+
 
 .. |pypi| image:: https://img.shields.io/pypi/v/poyo.svg
    :target: https://pypi.python.org/pypi/poyo
@@ -48,10 +54,6 @@ into a Python dict.
 
     with codecs.open('foobar.yml', encoding='utf-8') as ymlfile:
         config = poyo.parse_string(ymlfile.read())
-
-Please note that Poyo only supports a limited set of YAML features.
-
-See the example below to get a better idea of what Poyo is able to understand.
 
 Example
 -------
