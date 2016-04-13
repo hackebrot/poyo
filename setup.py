@@ -21,7 +21,7 @@ setup(
     maintainer_email='raphael@hackebrot.de',
     license='MIT',
     url='https://github.com/hackebrot/poyo',
-    description='A YAML Parser for Python',
+    description='A minimal YAML Parser for Python',
     long_description=read('README.rst'),
     packages=[
         'poyo',
