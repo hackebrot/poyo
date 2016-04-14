@@ -4,7 +4,7 @@ Poyo
 
 |pypi| |pyversions| |license| |travis-ci|
 
-A minimal YAML Parser for Python
+A lightweight YAML Parser for Python
 
 **Please note that Poyo supports only a chosen subset of the YAML format.**
 
