@@ -40,7 +40,9 @@ def test_LIST_matches_a_list():
 
 
 def test_LIST_matches_a_list_with_blank_lines():
-    match = patterns.LIST_CP.match('hmm:\n  - foo\n\n    - bar\n    - blah\n-bing')
+    match = patterns.LIST_CP.match(
+        'hmm:\n  - foo\n\n    - bar\n    - blah\n-bing'
+    )
     assert match is not None
     assert match.group() == 'hmm:\n  - foo\n\n    - bar\n    - blah\n'
     assert match.groupdict() == {
@@ -133,7 +135,7 @@ def test_INT_matches_an_int_value():
 
 
 def test_STR_matches_a_string_value():
-    value ='foo bar baz'
+    value = 'foo bar baz'
     match = patterns.STR_CP.match(value + '   ')
     assert match is not None
     assert match.group() == value + '   '
@@ -143,7 +145,7 @@ def test_STR_matches_a_string_value():
 
 
 def test_STR_matches_a_single_quoted_string_value():
-    value ="'foo bar baz'"
+    value = "'foo bar baz'"
     match = patterns.STR_CP.match(value + '   ')
     assert match is not None
     assert match.group() == value
@@ -153,7 +155,7 @@ def test_STR_matches_a_single_quoted_string_value():
 
 
 def test_STR_matches_a_double_quoted_string_value():
-    value ='"foo bar baz"'
+    value = '"foo bar baz"'
     match = patterns.STR_CP.match(value + '   ')
     assert match is not None
     assert match.group() == value
