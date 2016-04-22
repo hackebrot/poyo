@@ -141,7 +141,6 @@ class _Parser(object):
                     continue
 
                 self.pos = match.end()
-                print("Matched\n", match.group(), callback)
                 callback(match)
                 break
             else:
