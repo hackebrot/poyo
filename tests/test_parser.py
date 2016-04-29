@@ -1,46 +1,18 @@
 # -*- coding: utf-8 -*-
-import textwrap
+
+import codecs
+import pytest
 
 from poyo import parse_string
 
 
-def test_parse_string():
-    yaml = textwrap.dedent(u"""
-    ---
-    default_context: # foobar
+@pytest.fixture
+def string_data():
+    with codecs.open('tests/foobar.yml', encoding='utf-8') as ymlfile:
+        return ymlfile.read()
 
-        greeting: こんにちは
-        email: "raphael@hackebrot.de"
-        docs: true
 
-        gui: FALSE
-        123: 456.789
-        someint: 1000000
-        foo: "hallo #welt" #Inline comment :)
-        trueish: Falseeeeeee
-        doc_tools:
-            -    mkdocs
-            - 'sphinx'
-
-            - null
-
-        other_stuff:
-
-            - more
-            - stuff
-
-    zZz: True
-    NullValue: Null
-
-    # Block
-    # Comment
-
-    Hello World:
-        null: This is madness   # yo
-        gh: https://github.com/{0}.git
-    "Yay #python": Cool!
-    """)
-
+def test_parse_string(string_data):
     expected = {
         u'default_context': {
             u'greeting': u'こんにちは',
@@ -52,7 +24,6 @@ def test_parse_string():
             u'foo': u'hallo #welt',
             u'trueish': u'Falseeeeeee',
             u'doc_tools': [u'mkdocs', u'sphinx', None],
-            u'other_stuff': [u'more', u'stuff'],
         },
         u'zZz': True,
         u'NullValue': None,
@@ -63,4 +34,4 @@ def test_parse_string():
         u'Yay #python': u'Cool!'
     }
 
-    assert parse_string(yaml) == expected
+    assert parse_string(string_data) == expected
