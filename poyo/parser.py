@@ -1,12 +1,9 @@
 # -*- coding: utf-8 -*-
-
-import re
-
 from ._nodes import Root, Section, Simple
 from .exceptions import NoMatchException, NoParentException, NoTypeException
 from .patterns import (
-    BLANK_LINE, COMMENT, DASHES, FALSE, FLOAT, INT,
-    LIST, LISTITEM, NULL, SECTION, SIMPLE, STR, TRUE,
+    BLANK_LINE_CP, COMMENT_CP, DASHES_CP, FALSE_CP, FLOAT_CP, INT_CP,
+    LIST_CP, LISTITEM_CP, NULL_CP, SECTION_CP, SIMPLE_CP, STR_CP, TRUE_CP,
 )
 
 
@@ -20,21 +17,21 @@ class _Parser(object):
         self.seen = [self.root]
 
         self.rules = (
-            (re.compile(COMMENT, re.MULTILINE), self.parse_comment),
-            (re.compile(BLANK_LINE, re.MULTILINE), self.parse_blankline),
-            (re.compile(DASHES, re.MULTILINE), self.parse_dashes),
-            (re.compile(LIST, re.MULTILINE), self.parse_list),
-            (re.compile(SIMPLE, re.MULTILINE), self.parse_simple),
-            (re.compile(SECTION, re.MULTILINE), self.parse_section),
+            (COMMENT_CP, self.parse_comment),
+            (BLANK_LINE_CP, self.parse_blankline),
+            (DASHES_CP, self.parse_dashes),
+            (LIST_CP, self.parse_list),
+            (SIMPLE_CP, self.parse_simple),
+            (SECTION_CP, self.parse_section),
         )
 
         self.tag_rules = (
-            (re.compile(NULL), self.parse_null),
-            (re.compile(TRUE), self.parse_true),
-            (re.compile(FALSE), self.parse_false),
-            (re.compile(FLOAT), self.parse_float),
-            (re.compile(INT), self.parse_int),
-            (re.compile(STR), self.parse_str),
+            (NULL_CP, self.parse_null),
+            (TRUE_CP, self.parse_true),
+            (FALSE_CP, self.parse_false),
+            (FLOAT_CP, self.parse_float),
+            (INT_CP, self.parse_int),
+            (STR_CP, self.parse_str),
         )
 
     def find_at_level(self, level):
@@ -74,7 +71,7 @@ class _Parser(object):
         level = len(groups['indent'])
         parent = self.find_at_level(level)
 
-        item_matches = re.findall(LISTITEM, groups['items'], re.MULTILINE)
+        item_matches = LISTITEM_CP.findall(groups['items'])
 
         list_items = [
             self.read_from_tag(value)
