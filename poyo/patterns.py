@@ -21,7 +21,7 @@ _LIST_ITEM = _BLANK_LINE + r"|" + _COMMENT + r"|" + _LIST_VALUE
 
 _LIST = _SECTION + r"(?P<items>(?:" + _LIST_ITEM + r")+)"
 
-_NULL = r"\b(null|Null|NULL|~)\b"
+_NULL = r"\b(null|Null|NULL)\b|~"
 _TRUE = r"\b(true|True|TRUE)\b"
 _FALSE = r"\b(false|False|FALSE)\b"
 _INT = r"[-+]?[0-9]+"
