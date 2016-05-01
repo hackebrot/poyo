@@ -5,9 +5,12 @@ Credits
 Development Lead
 ----------------
 
-* Raphael Pierzina <raphael@hackebrot.de>
+* Raphael Pierzina (`@hackebrot`_)
 
 Contributors
 ------------
 
-None yet. Why not be the first?
+* David Eyk (`@eykd`_)
+
+.. _`@eykd`: https://github.com/eykd
+.. _`@hackebrot`: https://github.com/hackebrot
