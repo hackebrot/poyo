@@ -84,8 +84,10 @@ In (YAML):
         foo: "hallo #welt" #Inline comment :)
         trueish: Falseeeeeee
         doc_tools:
+            # docs or didn't happen
             -    mkdocs
             - 'sphinx'
+
             - null
     zZz: True
     NullValue: Null
