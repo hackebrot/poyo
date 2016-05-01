@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 from ._nodes import Root, Section, Simple
 from .exceptions import NoMatchException, NoParentException, NoTypeException
+
 from .patterns import (
-    BLANK_LINE_CP, COMMENT_CP, DASHES_CP, FALSE_CP, FLOAT_CP, INT_CP,
-    LIST_CP, LISTITEM_CP, NULL_CP, SECTION_CP, SIMPLE_CP, STR_CP, TRUE_CP,
+    COMMENT, BLANK_LINE, DASHES, LIST, SIMPLE, SECTION,
+    LIST_ITEM, NULL, TRUE, FALSE, FLOAT, INT, STR,
 )
 
 
@@ -17,21 +18,21 @@ class _Parser(object):
         self.seen = [self.root]
 
         self.rules = (
-            (COMMENT_CP, self.parse_comment),
-            (BLANK_LINE_CP, self.parse_blankline),
-            (DASHES_CP, self.parse_dashes),
-            (LIST_CP, self.parse_list),
-            (SIMPLE_CP, self.parse_simple),
-            (SECTION_CP, self.parse_section),
+            (COMMENT, self.parse_comment),
+            (BLANK_LINE, self.parse_blankline),
+            (DASHES, self.parse_dashes),
+            (LIST, self.parse_list),
+            (SIMPLE, self.parse_simple),
+            (SECTION, self.parse_section),
         )
 
         self.tag_rules = (
-            (NULL_CP, self.parse_null),
-            (TRUE_CP, self.parse_true),
-            (FALSE_CP, self.parse_false),
-            (FLOAT_CP, self.parse_float),
-            (INT_CP, self.parse_int),
-            (STR_CP, self.parse_str),
+            (NULL, self.parse_null),
+            (TRUE, self.parse_true),
+            (FALSE, self.parse_false),
+            (FLOAT, self.parse_float),
+            (INT, self.parse_int),
+            (STR, self.parse_str),
         )
 
     def find_at_level(self, level):
@@ -71,7 +72,7 @@ class _Parser(object):
         level = len(groups['indent'])
         parent = self.find_at_level(level)
 
-        item_matches = LISTITEM_CP.findall(groups['items'])
+        item_matches = LIST_ITEM.findall(groups['items'])
 
         list_items = [
             self.read_from_tag(value)
