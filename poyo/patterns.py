@@ -16,21 +16,10 @@ DASHES = r"^---" + NEWLINE
 SECTION = INDENT + VARIABLE + INLINE_COMMENT + NEWLINE
 SIMPLE = INDENT + VARIABLE + BLANK + VALUE + INLINE_COMMENT + NEWLINE
 
-LISTITEM = BLANK + r"-" + BLANK + VALUE + INLINE_COMMENT + NEWLINE
-SIMPLE_LISTITEM = BLANK + r'-' + '.+' + NEWLINE
-LIST = (SECTION +
-        r"(?P<items>" + (
-            "(?:" + (
-                BLANK_LINE +
-                '|' + '#.*' + NEWLINE +
-                r')?') +
-            "(?:" + "(?P=indent)" + SIMPLE_LISTITEM + ")" +
-            "(?:" + (
-                BLANK_LINE +
-                '|' + '#.*' + NEWLINE +
-                '|' + "(?P=indent)" + SIMPLE_LISTITEM
-            ) + r")*)"
-        ))
+LIST_VALUE = BLANK + r"-" + BLANK + VALUE + INLINE_COMMENT + NEWLINE
+LIST_ITEM = BLANK_LINE + r"|" + COMMENT + r"|" + LIST_VALUE
+
+LIST = SECTION + r"(?P<items>(?:" + LIST_ITEM + r")+)"
 
 NULL = r"\b(null|Null|NULL|~)\b"
 TRUE = r"\b(true|True|TRUE)\b"
@@ -39,8 +28,7 @@ INT = r"[-+]?[0-9]+"
 FLOAT = r"([-+]?(\.[0-9]+|[0-9]+(\.[0-9]*)?)([eE][-+]?[0-9]+)?)"
 STR = r"(?P<quotes>['\"]?).*(?P=quotes)"
 
-LISTITEM_CP = re.compile(LISTITEM, re.MULTILINE)
-
+# basic rules that the parser matches against
 COMMENT_CP = re.compile(COMMENT, re.MULTILINE)
 BLANK_LINE_CP = re.compile(BLANK_LINE, re.MULTILINE)
 DASHES_CP = re.compile(DASHES, re.MULTILINE)
@@ -48,6 +36,10 @@ LIST_CP = re.compile(LIST, re.MULTILINE)
 SIMPLE_CP = re.compile(SIMPLE, re.MULTILINE)
 SECTION_CP = re.compile(SECTION, re.MULTILINE)
 
+# list rule to retrieve all the individual matches of a list match
+LISTITEM_CP = re.compile(LIST_VALUE, re.MULTILINE)
+
+# tag rules to detect types of variable names and value
 NULL_CP = re.compile(NULL)
 TRUE_CP = re.compile(TRUE)
 FALSE_CP = re.compile(FALSE)
