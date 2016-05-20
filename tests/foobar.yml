@@ -1,5 +1,6 @@
 ---
 default_context: # foobar
+    # another comment
     greeting: こんにちは
     email: "raphael@hackebrot.de"
     docs: true
