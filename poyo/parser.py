@@ -65,7 +65,9 @@ class _Parser(object):
                 continue
 
             if match.group() != string:
-                raise ValueError
+                # Unable to match the full string, try the next pattern
+                continue
+
             return callback(match)
 
         raise NoTypeException(
