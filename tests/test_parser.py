@@ -19,6 +19,7 @@ def test_parse_string(string_data):
             u'email': u'raphael@hackebrot.de',
             u'docs': True,
             u'gui': False,
+            u'lektor': '0.0.0.0:5000',
             123: 456.789,
             u'someint': 1000000,
             u'foo': u'hallo #welt',
