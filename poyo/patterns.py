@@ -16,10 +16,14 @@ _DASHES = r"^---" + _NEWLINE
 _SECTION = _INDENT + _VARIABLE + _INLINE_COMMENT + _NEWLINE
 _SIMPLE = _INDENT + _VARIABLE + _BLANK + _VALUE + _INLINE_COMMENT + _NEWLINE
 
-_LIST_VALUE = _BLANK + r"-" + _BLANK + _VALUE + _INLINE_COMMENT + _NEWLINE
+_LIST_VALUE = (
+    _BLANK + r"-" + _BLANK +
+    r"('.*?'|\".*?\"|[^#]+?)" +
+    _INLINE_COMMENT + _NEWLINE
+)
 _LIST_ITEM = _BLANK_LINE + r"|" + _COMMENT + r"|" + _LIST_VALUE
 
-_LIST = _SECTION + r"(?P<items>(?:" + _LIST_ITEM + r")+)"
+_LIST = _SECTION + r"(?P<items>(?:" + _LIST_ITEM + r")*" + _LIST_VALUE + r")"
 
 _NULL = r"\b(null|Null|NULL)\b|~"
 _TRUE = r"\b(true|True|TRUE)\b"

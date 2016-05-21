@@ -94,7 +94,7 @@ class _Parser(object):
 
         list_items = [
             self.read_from_tag(value)
-            for value, _ in item_matches
+            for value in item_matches
         ]
 
         simple = Simple(

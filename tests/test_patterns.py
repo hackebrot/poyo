@@ -55,22 +55,14 @@ def test_LIST_matches_a_list_with_blank_lines():
 
 def test_LISTITEM_finds_all_listitems():
     found = patterns.LIST_ITEM.findall(' - foo # baz\n - bar\nfoobar',)
-    expected = [
-        ('foo', ''),
-        ('bar', ''),
-    ]
     assert found is not None
-    assert found == expected
+    assert found == ['foo', 'bar']
 
 
 def test_LISTITEM_finds_all_listitems_with_blank_lines():
     found = patterns.LIST_ITEM.findall(' - foo # baz\n\n - bar\nfoobar',)
-    expected = [
-        ('foo', ''),
-        ('bar', ''),
-    ]
     assert found is not None
-    assert found == expected
+    assert found == ['foo', 'bar']
 
 
 def test_SIMPLE_matches_a_simple_key_value_line():
