@@ -78,8 +78,11 @@ In (YAML):
         greeting: こんにちは
         email: "raphael@hackebrot.de"
         docs: true
+
         gui: FALSE
         123: 456.789
+        # comment
+        # allthethings
         someint: 1000000
         foo: "hallo #welt" #Inline comment :)
         trueish: Falseeeeeee
@@ -89,6 +92,7 @@ In (YAML):
             - 'sphinx'
 
             - null
+        # 今日は
     zZz: True
     NullValue: Null
 
@@ -96,6 +100,7 @@ In (YAML):
     # Comment
 
     Hello World:
+        # See you at EuroPython
         null: This is madness   # yo
         gh: https://github.com/{0}.git
     "Yay #python": Cool!
