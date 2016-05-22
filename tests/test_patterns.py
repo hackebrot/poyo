@@ -6,13 +6,13 @@ from poyo import patterns
 
 
 def test_COMMENT_matches_a_comment_line():
-    match = patterns.COMMENT.match('# baz\n - bar\nfoobar',)
+    match = patterns.COMMENT.match('# baz\n - bar\nfoobar')
     assert match is not None
     assert match.group() == '# baz\n'
 
 
 def test_COMMENT_matches_a_comment_line_with_leading_whitespace():
-    match = patterns.COMMENT.match('    # baz\n - bar\nfoobar',)
+    match = patterns.COMMENT.match('    # baz\n - bar\nfoobar')
     assert match is not None
     assert match.group() == '    # baz\n'
 
@@ -54,19 +54,19 @@ def test_LIST_matches_a_list_with_blank_lines():
 
 
 def test_LISTITEM_finds_all_listitems():
-    found = patterns.LIST_ITEM.findall(' - foo # baz\n - bar\nfoobar',)
+    found = patterns.LIST_ITEM.findall(' - foo # baz\n - bar\nfoobar')
     assert found is not None
     assert found == ['foo', 'bar']
 
 
 def test_LISTITEM_finds_all_listitems_with_blank_lines():
-    found = patterns.LIST_ITEM.findall(' - foo # baz\n\n - bar\nfoobar',)
+    found = patterns.LIST_ITEM.findall(' - foo # baz\n\n - bar\nfoobar')
     assert found is not None
     assert found == ['foo', 'bar']
 
 
 def test_SIMPLE_matches_a_simple_key_value_line():
-    match = patterns.SIMPLE.match('   foo: bar # baz\n - bar\nfoobar',)
+    match = patterns.SIMPLE.match('   foo: bar # baz\n - bar\nfoobar')
     assert match is not None
     assert match.group() == '   foo: bar # baz\n'
 
@@ -77,7 +77,7 @@ def test_SIMPLE_matches_a_simple_key_value_line():
 
 
 def test_SECTION_matches_a_section_key_line():
-    match = patterns.SECTION.match('   foo: # baz\n      - bar\nfoobar',)
+    match = patterns.SECTION.match('   foo: # baz\n      - bar\nfoobar')
     assert match is not None
     assert match.group() == '   foo: # baz\n'
 
