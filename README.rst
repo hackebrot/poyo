@@ -83,9 +83,11 @@ In (YAML):
         123: 456.789
         # comment
         # allthethings
-        someint: 1000000
+        'some:int': 1000000
         foo: "hallo #welt" #Inline comment :)
         trueish: Falseeeeeee
+        relative-root: /          # web app root path (default: '')
+        lektor: 0.0.0.0:5000      # local build
         doc_tools:
             # docs or didn't happen
             -    mkdocs
@@ -115,8 +117,10 @@ Out (Python):
             u'email': u'raphael@hackebrot.de',
             u'docs': True,
             u'gui': False,
+            u'lektor': '0.0.0.0:5000',
+            u'relative-root': '/',
             123: 456.789,
-            u'someint': 1000000,
+            u'some:int': 1000000,
             u'foo': u'hallo #welt',
             u'trueish': u'Falseeeeeee',
             u'doc_tools': [u'mkdocs', u'sphinx', None],
