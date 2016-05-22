@@ -48,8 +48,8 @@ class _Parser(object):
             (NULL, self.parse_null),
             (TRUE, self.parse_true),
             (FALSE, self.parse_false),
-            (FLOAT, self.parse_float),
             (INT, self.parse_int),
+            (FLOAT, self.parse_float),
             (STR, self.parse_str),
         )
 
