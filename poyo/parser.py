@@ -17,7 +17,11 @@ logger = logging.getLogger(__name__)
 def log_callback(wrapped_function):
     @functools.wraps(wrapped_function)
     def _wrapper(parser, match, **kwargs):
-        logger.debug('{}:{}'.format(wrapped_function.__name__, match))
+        func_name = wrapped_function.__name__
+        # Log match group with escaped characters
+        matched_string = match.group().encode('unicode_escape').decode()
+
+        logger.debug('{}:{}'.format(func_name, matched_string))
         return wrapped_function(parser, match, **kwargs)
     return _wrapper
 
@@ -70,9 +74,8 @@ class _Parser(object):
 
             return callback(match)
 
-        raise NoTypeException(
-            'Unable to determine type for "{}"'.format(string)
-        )
+        error_message = 'Unable to determine type for "{}"'
+        raise NoTypeException(error_message.format(string))
 
     @log_callback
     def parse_comment(self, match):
@@ -99,12 +102,8 @@ class _Parser(object):
             for value in item_matches
         ]
 
-        simple = Simple(
-            self.read_from_tag(groups['variable']),
-            level,
-            list_items,
-            parent=parent
-        )
+        variable = self.read_from_tag(groups['variable'])
+        simple = Simple(variable, level, list_items, parent=parent)
         self.seen.append(simple)
 
     @log_callback
@@ -114,12 +113,10 @@ class _Parser(object):
         level = len(groups['indent'])
         parent = self.find_at_level(level)
 
-        simple = Simple(
-            self.read_from_tag(groups['variable']),
-            level,
-            self.read_from_tag(groups['value']),
-            parent=parent
-        )
+        variable = self.read_from_tag(groups['variable'])
+        value = self.read_from_tag(groups['value'])
+
+        simple = Simple(variable, level, value, parent=parent)
         self.seen.append(simple)
 
     @log_callback
