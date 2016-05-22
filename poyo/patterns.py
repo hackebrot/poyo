@@ -3,7 +3,7 @@
 import re
 
 _INDENT = r"(?P<indent>^ *)"
-_VARIABLE = r"(?P<variable>.+):"
+_VARIABLE = r"(?P<variable>.+?):"
 _VALUE = r"(?P<value>(?:(?P<q2>['\"]).*?(?P=q2))|[^#]+?)"
 _NEWLINE = r"$\n"
 _BLANK = r" +"
