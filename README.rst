@@ -134,6 +134,65 @@ Out (Python):
         u'Yay #python': u'Cool!'
     }
 
+Logging
+-------
+
+Poyo follows the recommendations for `logging in a library`_, which means it
+does **not** configure logging itself.
+
+Its root logger is named ``poyo`` and the names of all its children loggers
+track the package/module hierarchy. Poyo logs to a ``NullHandler`` and solely
+on ``DEBUG`` level.
+
+If your application configures logging and allows debug messages to be shown,
+you will see logging when using Poyo:
+
+.. code-block:: python
+
+    import logging
+    from poyo import parse_string
+
+    logging.basicConfig(level=logging.DEBUG)
+
+    CONFIG = """
+    ---
+    default_context: # foobar
+        greeting: こんにちは
+        gui: FALSE
+        doc_tools:
+            # docs or didn't happen
+            -    mkdocs
+            - 'sphinx'
+        123: 456.789
+    """
+
+    print(parse_string(CONFIG))
+
+
+.. code-block:: text
+
+    DEBUG:poyo.parser:parse_blankline:\n
+    DEBUG:poyo.parser:parse_dashes:---\n
+    DEBUG:poyo.parser:parse_section:default_context: # foobar\n
+    DEBUG:poyo.parser:parse_str:default_context
+    DEBUG:poyo.parser:parse_simple:    greeting: \u3053\u3093\u306b\u3061\u306f\n
+    DEBUG:poyo.parser:parse_str:greeting
+    DEBUG:poyo.parser:parse_str:\u3053\u3093\u306b\u3061\u306f
+    DEBUG:poyo.parser:parse_simple:    gui: FALSE\n
+    DEBUG:poyo.parser:parse_str:gui
+    DEBUG:poyo.parser:parse_false:FALSE
+    DEBUG:poyo.parser:parse_list:    doc_tools:\n        # docs or didn't happen\n        -    mkdocs\n        - 'sphinx'\n
+    DEBUG:poyo.parser:parse_str:mkdocs
+    DEBUG:poyo.parser:parse_str:'sphinx'
+    DEBUG:poyo.parser:parse_str:doc_tools
+    DEBUG:poyo.parser:parse_simple:    123: 456.789\n
+    DEBUG:poyo.parser:parse_int:123
+    DEBUG:poyo.parser:parse_float:456.789
+    {'default_context': {'greeting': 'こんにちは', 'gui': False, 'doc_tools': ['mkdocs', 'sphinx'], 123: 456.789}}
+
+.. _`logging in a library`: https://docs.python.org/3/howto/logging.html#configuring-logging-for-a-library
+
+
 WHY?!
 -----
 
