@@ -22,7 +22,7 @@ def test_parse_string(string_data):
             u'lektor': '0.0.0.0:5000',
             u'relative-root': '/',
             123: 456.789,
-            u'someint': 1000000,
+            u'some:int': 1000000,
             u'foo': u'hallo #welt',
             u'trueish': u'Falseeeeeee',
             u'doc_tools': [u'mkdocs', u'sphinx', None],

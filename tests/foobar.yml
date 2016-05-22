@@ -8,7 +8,7 @@ default_context: # foobar
     123: 456.789
     # comment
     # allthethings
-    someint: 1000000
+    'some:int': 1000000
     foo: "hallo #welt" #Inline comment :)
     trueish: Falseeeeeee
     relative-root: /          # web app root path (default: '')
