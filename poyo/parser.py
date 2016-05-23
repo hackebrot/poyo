@@ -3,7 +3,7 @@
 import functools
 import logging
 
-from ._nodes import Root, Section, Simple
+from ._nodes import Root, Section, Simple, TreeElement
 from .exceptions import NoMatchException, NoParentException, NoTypeException
 
 from .patterns import (
@@ -79,15 +79,15 @@ class _Parser(object):
 
     @log_callback
     def parse_comment(self, match):
-        pass
+        """Ignore line comments."""
 
     @log_callback
     def parse_blankline(self, match):
-        pass
+        """Ignore blank lines."""
 
     @log_callback
     def parse_dashes(self, match):
-        pass
+        """Ignore lines that contain three dash symbols."""
 
     @log_callback
     def parse_list(self, match):
@@ -103,8 +103,7 @@ class _Parser(object):
         ]
 
         variable = self.read_from_tag(groups['variable'])
-        simple = Simple(variable, level, list_items, parent=parent)
-        self.seen.append(simple)
+        return Simple(variable, level, list_items, parent=parent)
 
     @log_callback
     def parse_simple(self, match):
@@ -116,8 +115,7 @@ class _Parser(object):
         variable = self.read_from_tag(groups['variable'])
         value = self.read_from_tag(groups['value'])
 
-        simple = Simple(variable, level, value, parent=parent)
-        self.seen.append(simple)
+        return Simple(variable, level, value, parent=parent)
 
     @log_callback
     def parse_section(self, match):
@@ -126,12 +124,11 @@ class _Parser(object):
         level = len(groups['indent'])
         parent = self.find_at_level(level)
 
-        section = Section(
+        return Section(
             self.read_from_tag(groups['variable']),
             level,
             parent=parent
         )
-        self.seen.append(section)
 
     @log_callback
     def parse_null(self, match):
@@ -167,7 +164,11 @@ class _Parser(object):
                     continue
 
                 self.pos = match.end()
-                callback(match)
+
+                node = callback(match)
+                if isinstance(node, TreeElement):
+                    self.seen.append(node)
+
                 break
             else:
                 raise NoMatchException(
