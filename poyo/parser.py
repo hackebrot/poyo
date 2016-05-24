@@ -3,8 +3,11 @@
 import functools
 import logging
 
-from ._nodes import Root, Section, Simple, TreeElement
-from .exceptions import NoMatchException, NoParentException, NoTypeException
+from ._nodes import Root, Section, Simple
+
+from .exceptions import (
+    NoMatchException, NoParentException, NoTypeException, IgnoredMatchException
+)
 
 from .patterns import (
     COMMENT, BLANK_LINE, DASHES, LIST, SIMPLE, SECTION,
@@ -15,14 +18,47 @@ logger = logging.getLogger(__name__)
 
 
 def log_callback(wrapped_function):
+    """Decorator that produces DEBUG level log messages before and after
+    calling a parser method.
+
+    If a callback raises an IgnoredMatchException the log will show 'IGNORED'
+    instead to indicate that the parser will not create any objects from
+    the matched string.
+
+    Example:
+        DEBUG:poyo.parser:parse_simple <-     123: 456.789
+        DEBUG:poyo.parser:parse_int <- 123
+        DEBUG:poyo.parser:parse_int -> 123
+        DEBUG:poyo.parser:parse_float <- 456.789
+        DEBUG:poyo.parser:parse_float -> 456.789
+        DEBUG:poyo.parser:parse_simple -> <Simple name: 123, value: 456.789>
+    """
+
+    def debug_log(message):
+        """Helper to log an escaped version of the given message to DEBUG"""
+        logger.debug(message.encode('unicode_escape').decode())
+
     @functools.wraps(wrapped_function)
     def _wrapper(parser, match, **kwargs):
         func_name = wrapped_function.__name__
-        # Log match group with escaped characters
-        matched_string = match.group().encode('unicode_escape').decode()
 
-        logger.debug('{}:{}'.format(func_name, matched_string))
-        return wrapped_function(parser, match, **kwargs)
+        debug_log(u'{func_name} <- {matched_string}'.format(
+            func_name=func_name,
+            matched_string=match.group(),
+        ))
+
+        try:
+            result = wrapped_function(parser, match, **kwargs)
+        except IgnoredMatchException:
+            debug_log(u'{func_name} -> IGNORED'.format(func_name=func_name))
+            raise
+
+        debug_log(u'{func_name} -> {result}'.format(
+            func_name=func_name,
+            result=result,
+        ))
+
+        return result
     return _wrapper
 
 
@@ -80,14 +116,17 @@ class _Parser(object):
     @log_callback
     def parse_comment(self, match):
         """Ignore line comments."""
+        raise IgnoredMatchException
 
     @log_callback
     def parse_blankline(self, match):
         """Ignore blank lines."""
+        raise IgnoredMatchException
 
     @log_callback
     def parse_dashes(self, match):
         """Ignore lines that contain three dash symbols."""
+        raise IgnoredMatchException
 
     @log_callback
     def parse_list(self, match):
@@ -165,8 +204,11 @@ class _Parser(object):
 
                 self.pos = match.end()
 
-                node = callback(match)
-                if isinstance(node, TreeElement):
+                try:
+                    node = callback(match)
+                except IgnoredMatchException:
+                    pass
+                else:
                     self.seen.append(node)
 
                 break
