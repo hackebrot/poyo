@@ -63,6 +63,9 @@ class Section(ContainerMixin, ChildMixin, TreeElement):
         self.name = name
         self.level = level
 
+    def __repr__(self):
+        return u'<Section name: {name}>'.format(name=self.name)
+
 
 class Simple(ChildMixin, TreeElement):
     """Class that can solely be used as a Child, f.i. simple key value pairs
@@ -76,3 +79,9 @@ class Simple(ChildMixin, TreeElement):
 
     def __call__(self):
         return self.value
+
+    def __repr__(self):
+        return u'<Simple name: {name}, value: {value}>'.format(
+            name=self.name,
+            value=self.value
+        )
