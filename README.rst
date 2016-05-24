@@ -145,7 +145,20 @@ track the package/module hierarchy. Poyo logs to a ``NullHandler`` and solely
 on ``DEBUG`` level.
 
 If your application configures logging and allows debug messages to be shown,
-you will see logging when using Poyo:
+you will see logging when using Poyo. The log messages indicate which parser
+method is used for a given string as the parser deseralizes the config.
+
+You can remove all logging from Poyo in your application by setting the log
+level of the ``poyo`` logger to a value higher than ``DEBUG``:
+
+.. code-block:: python
+
+	import logging
+
+	logging.getLogger('poyo').setLevel(logging.WARNING)
+
+Example Debug Logging
+~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: python
 
@@ -166,7 +179,7 @@ you will see logging when using Poyo:
         123: 456.789
     """
 
-    print(parse_string(CONFIG))
+    logging.debug(parse_string(CONFIG))
 
 
 .. code-block:: text
@@ -205,7 +218,13 @@ you will see logging when using Poyo:
     DEBUG:poyo.parser:parse_float <- 456.789
     DEBUG:poyo.parser:parse_float -> 456.789
     DEBUG:poyo.parser:parse_simple -> <Simple name: 123, value: 456.789>
-    {'default_context': {123: 456.789, 'doc_tools': ['mkdocs', 'sphinx'], 'gui': False, 'greeting': 'こんにちは'}}
+    DEBUG:poyo.parser:parse_simple <-     docs: true\n
+    DEBUG:poyo.parser:parse_str <- docs
+    DEBUG:poyo.parser:parse_str -> docs
+    DEBUG:poyo.parser:parse_true <- true
+    DEBUG:poyo.parser:parse_true -> True
+    DEBUG:poyo.parser:parse_simple -> <Simple name: docs, value: True>
+    DEBUG:root:{'default_context': {'docs': True, 'doc_tools': ['mkdocs', 'sphinx'], 123: 456.789, 'greeting': 'こんにちは', 'gui': False}}
 
 .. _`logging in a library`: https://docs.python.org/3/howto/logging.html#configuring-logging-for-a-library
 
