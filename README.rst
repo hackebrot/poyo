@@ -171,24 +171,41 @@ you will see logging when using Poyo:
 
 .. code-block:: text
 
-    DEBUG:poyo.parser:parse_blankline:\n
-    DEBUG:poyo.parser:parse_dashes:---\n
-    DEBUG:poyo.parser:parse_section:default_context: # foobar\n
-    DEBUG:poyo.parser:parse_str:default_context
-    DEBUG:poyo.parser:parse_simple:    greeting: \u3053\u3093\u306b\u3061\u306f\n
-    DEBUG:poyo.parser:parse_str:greeting
-    DEBUG:poyo.parser:parse_str:\u3053\u3093\u306b\u3061\u306f
-    DEBUG:poyo.parser:parse_simple:    gui: FALSE\n
-    DEBUG:poyo.parser:parse_str:gui
-    DEBUG:poyo.parser:parse_false:FALSE
-    DEBUG:poyo.parser:parse_list:    doc_tools:\n        # docs or didn't happen\n        -    mkdocs\n        - 'sphinx'\n
-    DEBUG:poyo.parser:parse_str:mkdocs
-    DEBUG:poyo.parser:parse_str:'sphinx'
-    DEBUG:poyo.parser:parse_str:doc_tools
-    DEBUG:poyo.parser:parse_simple:    123: 456.789\n
-    DEBUG:poyo.parser:parse_int:123
-    DEBUG:poyo.parser:parse_float:456.789
-    {'default_context': {'greeting': 'こんにちは', 'gui': False, 'doc_tools': ['mkdocs', 'sphinx'], 123: 456.789}}
+    DEBUG:poyo.parser:parse_blankline <- \n
+    DEBUG:poyo.parser:parse_blankline -> IGNORED
+    DEBUG:poyo.parser:parse_dashes <- ---\n
+    DEBUG:poyo.parser:parse_dashes -> IGNORED
+    DEBUG:poyo.parser:parse_section <- default_context: # foobar\n
+    DEBUG:poyo.parser:parse_str <- default_context
+    DEBUG:poyo.parser:parse_str -> default_context
+    DEBUG:poyo.parser:parse_section -> <Section name: default_context>
+    DEBUG:poyo.parser:parse_simple <-     greeting: \u3053\u3093\u306b\u3061\u306f\n
+    DEBUG:poyo.parser:parse_str <- greeting
+    DEBUG:poyo.parser:parse_str -> greeting
+    DEBUG:poyo.parser:parse_str <- \u3053\u3093\u306b\u3061\u306f
+    DEBUG:poyo.parser:parse_str -> \u3053\u3093\u306b\u3061\u306f
+    DEBUG:poyo.parser:parse_simple -> <Simple name: greeting, value: \u3053\u3093\u306b\u3061\u306f>
+    DEBUG:poyo.parser:parse_simple <-     gui: FALSE\n
+    DEBUG:poyo.parser:parse_str <- gui
+    DEBUG:poyo.parser:parse_str -> gui
+    DEBUG:poyo.parser:parse_false <- FALSE
+    DEBUG:poyo.parser:parse_false -> False
+    DEBUG:poyo.parser:parse_simple -> <Simple name: gui, value: False>
+    DEBUG:poyo.parser:parse_list <-     doc_tools:\n        # docs or didn't happen\n        -    mkdocs\n        - 'sphinx'\n
+    DEBUG:poyo.parser:parse_str <- mkdocs
+    DEBUG:poyo.parser:parse_str -> mkdocs
+    DEBUG:poyo.parser:parse_str <- 'sphinx'
+    DEBUG:poyo.parser:parse_str -> sphinx
+    DEBUG:poyo.parser:parse_str <- doc_tools
+    DEBUG:poyo.parser:parse_str -> doc_tools
+    DEBUG:poyo.parser:parse_list -> <Simple name: doc_tools, value: ['mkdocs', 'sphinx']>
+    DEBUG:poyo.parser:parse_simple <-     123: 456.789\n
+    DEBUG:poyo.parser:parse_int <- 123
+    DEBUG:poyo.parser:parse_int -> 123
+    DEBUG:poyo.parser:parse_float <- 456.789
+    DEBUG:poyo.parser:parse_float -> 456.789
+    DEBUG:poyo.parser:parse_simple -> <Simple name: 123, value: 456.789>
+    {'default_context': {123: 456.789, 'doc_tools': ['mkdocs', 'sphinx'], 'gui': False, 'greeting': 'こんにちは'}}
 
 .. _`logging in a library`: https://docs.python.org/3/howto/logging.html#configuring-logging-for-a-library
 
