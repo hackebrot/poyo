@@ -47,6 +47,10 @@ Usage
 Poyo comes with a ``parse_string()`` function, to load utf-8 encoded string
 data into a Python dict.
 
+Supported types are **str**, **bool**, **int**, **float**, **NoneType** as well
+as **dict** and **list** values. Poyo does not allow deserialization of
+arbitrary Python objects.
+
 .. code-block:: python
 
     import codecs
