@@ -102,6 +102,7 @@ class _Parser(object):
             match = pattern.match(string)
 
             if not match:
+                # Pattern does not match, try the next one
                 continue
 
             if match.group() != string:
@@ -194,30 +195,44 @@ class _Parser(object):
         quotes = match.group('quotes')
         return match.group().strip(quotes)
 
-    def __call__(self):
-        while self.pos < self.max_pos:
-            for pattern, callback in self.rules:
-                match = pattern.match(self.source, pos=self.pos)
+    def find_match(self):
+        """Try to find a pattern that matches the source and calll a parser
+        method to create Python objects.
 
-                if not match:
-                    continue
+        A callback that raises an IgnoredMatchException indicates that the
+        given string data is ignored by the parser and no objects are created.
 
-                self.pos = match.end()
+        If none of the pattern match a NoMatchException is raised.
+        """
+        for pattern, callback in self.rules:
+            match = pattern.match(self.source, pos=self.pos)
 
-                try:
-                    node = callback(match)
-                except IgnoredMatchException:
-                    pass
-                else:
-                    self.seen.append(node)
+            if not match:
+                continue
 
-                break
+            try:
+                node = callback(match)
+            except IgnoredMatchException:
+                pass
             else:
-                raise NoMatchException(
-                    'None of the known patterns match for {}'
-                    ''.format(self.source[self.pos:])
-                )
+                self.seen.append(node)
 
+            return match
+
+        raise NoMatchException(
+            'None of the known patterns match for {}'
+            ''.format(self.source[self.pos:])
+        )
+
+    def __call__(self):
+        """Parse the given string data and sequentually update the current
+        cursor position until the end is reached.
+
+        Return the Root object if successful.
+        """
+        while self.pos < self.max_pos:
+            match = self.find_match()
+            self.pos = match.end()
         return self.root()
 
 
