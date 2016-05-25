@@ -10,8 +10,11 @@ A lightweight YAML Parser for Python
 
 **It can only read but not write and is not compatible with JSON.**
 
-See the examples below to get an idea of what Poyo understands.
+Poyo does not allow deserialization of arbitrary Python objects. Supported
+types are **str**, **bool**, **int**, **float**, **NoneType** as well as
+**dict** and **list** values.
 
+See the examples below to get an idea of what Poyo understands.
 
 .. |pypi| image:: https://img.shields.io/pypi/v/poyo.svg
    :target: https://pypi.python.org/pypi/poyo
@@ -46,10 +49,6 @@ Usage
 
 Poyo comes with a ``parse_string()`` function, to load utf-8 encoded string
 data into a Python dict.
-
-Supported types are **str**, **bool**, **int**, **float**, **NoneType** as well
-as **dict** and **list** values. Poyo does not allow deserialization of
-arbitrary Python objects.
 
 .. code-block:: python
 
