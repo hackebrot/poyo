@@ -12,9 +12,8 @@ A lightweight YAML Parser for Python
 
 Poyo does not allow deserialization of arbitrary Python objects. Supported
 types are **str**, **bool**, **int**, **float**, **NoneType** as well as
-**dict** and **list** values.
-
-See the examples below to get an idea of what Poyo understands.
+**dict** and **list** values. Please see the examples below to get an idea of
+what Poyo understands.
 
 .. |pypi| image:: https://img.shields.io/pypi/v/poyo.svg
    :target: https://pypi.python.org/pypi/poyo
