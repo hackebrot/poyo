@@ -20,6 +20,15 @@ default_context: # foobar
 * Set up ``poyo`` logger with NullHandler to log DEBUG messages when parsing,
   thanks to [@hackebrot][@hackebrot]
 
+```text
+DEBUG:poyo.parser:parse_simple <-     123: 456.789
+DEBUG:poyo.parser:parse_int <- 123
+DEBUG:poyo.parser:parse_int -> 123
+DEBUG:poyo.parser:parse_float <- 456.789
+DEBUG:poyo.parser:parse_float -> 456.789
+DEBUG:poyo.parser:parse_simple -> <Simple name: 123, value: 456.789>
+```
+
 ### Bugfixes
 
 * Fix an issue around section names if the line contained more than one colon
