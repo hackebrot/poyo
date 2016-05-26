@@ -71,7 +71,7 @@ data into a Python dict.
 Example
 -------
 
-In (YAML):
+**In (YAML):**
 
 .. code-block:: yaml
 
@@ -109,7 +109,7 @@ In (YAML):
         gh: https://github.com/{0}.git
     "Yay #python": Cool!
 
-Out (Python):
+**Out (Python):**
 
 .. code-block:: python
 
@@ -140,18 +140,17 @@ Logging
 -------
 
 Poyo follows the recommendations for `logging in a library`_, which means it
-does **not** configure logging itself.
-
-Its root logger is named ``poyo`` and the names of all its children loggers
-track the package/module hierarchy. Poyo logs to a ``NullHandler`` and solely
-on ``DEBUG`` level.
+does **not** configure logging itself. Its root logger is named ``poyo`` and
+the names of all its children loggers track the package/module hierarchy. Poyo
+logs to a ``NullHandler`` and solely on ``DEBUG`` level.
 
 If your application configures logging and allows debug messages to be shown,
 you will see logging when using Poyo. The log messages indicate which parser
-method is used for a given string as the parser deseralizes the config.
+method is used for a given string as the parser deseralizes the config. You can
+remove all logging from Poyo in your application by setting the log level of
+the ``poyo`` logger to a value higher than ``DEBUG``.
 
-You can remove all logging from Poyo in your application by setting the log
-level of the ``poyo`` logger to a value higher than ``DEBUG``:
+**Disable Logging:**
 
 .. code-block:: python
 
@@ -159,8 +158,7 @@ level of the ``poyo`` logger to a value higher than ``DEBUG``:
 
 	logging.getLogger('poyo').setLevel(logging.WARNING)
 
-Example Debug Logging
-~~~~~~~~~~~~~~~~~~~~~
+**Example Debug Logging Config:**
 
 .. code-block:: python
 
@@ -183,6 +181,7 @@ Example Debug Logging
 
     logging.debug(parse_string(CONFIG))
 
+**Example Debug Logging Messages:**
 
 .. code-block:: text
 
