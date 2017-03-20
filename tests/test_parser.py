@@ -7,11 +7,13 @@ from poyo import parse_string
 
 
 @pytest.fixture
-def string_data():
-    with codecs.open('tests/foobar.yml', encoding='utf-8') as ymlfile:
-        return ymlfile.read()
+def string_data(ymlfile):
+    filename = 'tests/{}.yml'.format(ymlfile)
+    with codecs.open(filename, encoding='utf-8') as fh:
+        return fh.read()
 
 
+@pytest.mark.parametrize('ymlfile', ['foobar'])
 def test_parse_string(string_data):
     expected = {
         u'default_context': {
@@ -39,13 +41,8 @@ def test_parse_string(string_data):
     assert parse_string(string_data) == expected
 
 
-@pytest.fixture
-def string_data_with_no_newline():
-    with codecs.open('tests/no-newline.yml', encoding='utf-8') as ymlfile:
-        return ymlfile.read()
-
-
-def test_parse_string_no_newline(string_data_with_no_newline):
+@pytest.mark.parametrize('ymlfile', ['no-newline'])
+def test_parse_string_no_newline(string_data):
     expected = {
         u'Hello World': {
             u'name': u'Toni Chu',
@@ -53,16 +50,11 @@ def test_parse_string_no_newline(string_data_with_no_newline):
         },
         u'Yay #python': 3.6,
     }
-    assert parse_string(string_data_with_no_newline) == expected
+    assert parse_string(string_data) == expected
 
 
-@pytest.fixture
-def string_data_list_with_no_newline():
-    with codecs.open('tests/no-newline-list.yml', encoding='utf-8') as ymlfile:
-        return ymlfile.read()
-
-
-def test_parse_string_no_newline_list(string_data_list_with_no_newline):
+@pytest.mark.parametrize('ymlfile', ['no-newline-list'])
+def test_parse_string_no_newline_list(string_data):
     expected = {
         u'Hello World': {
             u'numbers': [
@@ -78,4 +70,4 @@ def test_parse_string_no_newline_list(string_data_list_with_no_newline):
             ]
         },
     }
-    assert parse_string(string_data_list_with_no_newline) == expected
+    assert parse_string(string_data) == expected
