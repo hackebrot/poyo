@@ -54,3 +54,28 @@ def test_parse_string_no_newline(string_data_with_no_newline):
         u'Yay #python': 3.6,
     }
     assert parse_string(string_data_with_no_newline) == expected
+
+
+@pytest.fixture
+def string_data_list_with_no_newline():
+    with codecs.open('tests/no-newline-list.yml', encoding='utf-8') as ymlfile:
+        return ymlfile.read()
+
+
+def test_parse_string_no_newline_list(string_data_list_with_no_newline):
+    expected = {
+        u'Hello World': {
+            u'numbers': [
+                1,
+                2,
+            ],
+            u'name': u'Toni Chu',
+            u'gh': u'https://github.com/{0}.git',
+            u'doc_tools': [
+                u'mkdocs',
+                u'sphinx',
+                None,
+            ]
+        },
+    }
+    assert parse_string(string_data_list_with_no_newline) == expected
