@@ -1,0 +1,10 @@
+Hello World:
+    # See you at EuroPython
+    name: Toni Chu   # yo
+    gh: https://github.com/{0}.git
+    doc_tools:
+        # docs or didn't happen
+        -    mkdocs
+        - 'sphinx'
+
+        - null
