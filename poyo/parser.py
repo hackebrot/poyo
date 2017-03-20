@@ -243,7 +243,7 @@ class _Parser(object):
         This method checks to the text for a final blank line. Without
         this line, crazy parse errors are thrown unnecessarily. This
         method will remove those trivial errors.
-        
+
         :param source_text: The full text of the file or string to parse 
         :return: Text correct for parse error on missing line
         """
@@ -257,7 +257,7 @@ class _Parser(object):
         if lines[-1] != u'\n':
             lines.append(u'\n')
 
-        return '\n'.join(lines)
+        return u'\n'.join(lines)
 
 
 def parse_string(string):
