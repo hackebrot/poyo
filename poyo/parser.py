@@ -244,7 +244,7 @@ class _Parser(object):
         this line, crazy parse errors are thrown unnecessarily. This
         method will remove those trivial errors.
 
-        :param source_text: The full text of the file or string to parse 
+        :param source_text: The full text of the file or string to parse
         :return: Text correct for parse error on missing line
         """
         if not source_text:
