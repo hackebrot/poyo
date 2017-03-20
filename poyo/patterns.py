@@ -3,9 +3,10 @@
 import re
 
 _INDENT = r"(?P<indent>^ *)"
-_VARIABLE = r"(?P<variable>.+?):"
+_VAR = r"(?P<variable>.+?):"
 _VALUE = r"(?P<value>(?:(?P<q2>['\"]).*?(?P=q2))|[^#]+?)"
 _NEWLINE = r"$\n"
+_OPT_NEWLINE = r"$\n?"
 _BLANK = r" +"
 _INLINE_COMMENT = r"(?: +#.*)?"
 
@@ -13,13 +14,13 @@ _COMMENT = r"^ *#.*" + _NEWLINE
 _BLANK_LINE = r"^[ \t]*" + _NEWLINE
 _DASHES = r"^---" + _NEWLINE
 
-_SECTION = _INDENT + _VARIABLE + _INLINE_COMMENT + _NEWLINE
-_SIMPLE = _INDENT + _VARIABLE + _BLANK + _VALUE + _INLINE_COMMENT + _NEWLINE
+_SECTION = _INDENT + _VAR + _INLINE_COMMENT + _NEWLINE
+_SIMPLE = _INDENT + _VAR + _BLANK + _VALUE + _INLINE_COMMENT + _OPT_NEWLINE
 
 _LIST_VALUE = (
     _BLANK + r"-" + _BLANK +
     r"('.*?'|\".*?\"|[^#]+?)" +
-    _INLINE_COMMENT + _NEWLINE
+    _INLINE_COMMENT + _OPT_NEWLINE
 )
 _LIST_ITEM = _BLANK_LINE + r"|" + _COMMENT + r"|" + _LIST_VALUE
 
