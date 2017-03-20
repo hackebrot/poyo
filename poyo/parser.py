@@ -59,12 +59,14 @@ def log_callback(wrapped_function):
         ))
 
         return result
+
     return _wrapper
 
 
 class _Parser(object):
     def __init__(self, source):
         self.pos = 0
+        source = _Parser.__correct_missing_endline(source)
         self.source = source
         self.max_pos = len(self.source)
 
@@ -234,6 +236,28 @@ class _Parser(object):
             match = self.find_match()
             self.pos = match.end()
         return self.root()
+
+    @staticmethod
+    def __correct_missing_endline(source_text):
+        """
+        This method checks to the text for a final blank line. Without
+        this line, crazy parse errors are thrown unnecessarily. This
+        method will remove those trivial errors.
+        
+        :param source_text: The full text of the file or string to parse 
+        :return: Text correct for parse error on missing line
+        """
+        if not source_text:
+            return source_text
+
+        lines = source_text.split(u'\n')
+        if not lines:
+            return source_text
+
+        if lines[-1] != u'\n':
+            lines.append(u'\n')
+
+        return '\n'.join(lines)
 
 
 def parse_string(string):
