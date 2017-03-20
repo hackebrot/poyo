@@ -37,3 +37,20 @@ def test_parse_string(string_data):
     }
 
     assert parse_string(string_data) == expected
+
+
+@pytest.fixture
+def string_data_with_no_newline():
+    with codecs.open('tests/no-newline.yml', encoding='utf-8') as ymlfile:
+        return ymlfile.read()
+
+
+def test_parse_string_no_newline(string_data_with_no_newline):
+    expected = {
+        u'Hello World': {
+            u'name': u'Toni Chu',
+            u'gh': u'https://github.com/{0}.git',
+        },
+        u'Yay #python': 3.6,
+    }
+    assert parse_string(string_data_with_no_newline) == expected
