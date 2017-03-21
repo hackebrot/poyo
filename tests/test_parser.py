@@ -12,6 +12,19 @@ def string_data():
         return ymlfile.read()
 
 
+@pytest.fixture
+def partial_file_text():
+    with codecs.open('tests/missing_endl.yml', encoding='utf-8') as ymlfile:
+        return ymlfile.read()
+
+
+@pytest.fixture
+def missing_open_line_file_text():
+    file = 'tests/missing_open_line.yml'
+    with codecs.open(file, encoding='utf-8') as ymlfile:
+        return ymlfile.read()
+
+
 def test_parse_string(string_data):
     expected = {
         u'default_context': {
@@ -37,3 +50,27 @@ def test_parse_string(string_data):
     }
 
     assert parse_string(string_data) == expected
+
+
+def test_missing_endl(partial_file_text):
+    expected = {
+        u'default_context': {
+            u'greeting': u'こんにちは',
+            u'email': u'raphael@hackebrot.de',
+            u'docs': True,
+        }
+    }
+
+    assert parse_string(partial_file_text) == expected
+
+
+def test_missing_open_line(missing_open_line_file_text):
+    expected = {
+        u'default_context': {
+            u'greeting': u'こんにちは',
+            u'email': u'raphael@hackebrot.de',
+            u'docs': True,
+        }
+    }
+
+    assert parse_string(missing_open_line_file_text) == expected
