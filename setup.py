@@ -14,7 +14,7 @@ def read(fname):
 
 setup(
     name='poyo',
-    version='0.4.0',
+    version='0.4.1',
     author='Raphael Pierzina',
     author_email='raphael@hackebrot.de',
     maintainer='Raphael Pierzina',

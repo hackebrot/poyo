@@ -7,7 +7,7 @@ from .parser import parse_string
 
 __author__ = 'Raphael Pierzina'
 __email__ = 'raphael@hackebrot.de'
-__version__ = '0.4.0'
+__version__ = '0.4.1'
 
 logging.getLogger(__name__).addHandler(logging.NullHandler())
 
