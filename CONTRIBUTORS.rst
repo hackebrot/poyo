@@ -18,7 +18,7 @@ Bug Reports and Suggestions
 * Georgi Valkov (`@gvalkov`_)
 * Jakub Kadlubiec (`@jakubka`_)
 * Nicholas Chammas (`@nchammas`_)
-* Michael Kennedyc (`@mikeckennedy`_)
+* Michael Kennedy (`@mikeckennedy`_)
 * `@sathlan`_
 
 .. _`@eykd`: https://github.com/eykd
