@@ -3,16 +3,20 @@
 import codecs
 import pytest
 
-from poyo import parse_string
+import poyo
 
 
 @pytest.fixture
-def string_data():
-    with codecs.open('tests/foobar.yml', encoding='utf-8') as ymlfile:
-        return ymlfile.read()
+def yaml_stream():
+    return codecs.open('tests/foobar.yml', encoding='utf-8')
 
 
-def test_parse_string(string_data):
+@pytest.fixture
+def string_data(yaml_stream):
+    return yaml_stream.read()
+
+
+def test_parse_string(string_data, yaml_stream):
     expected = {
         u'default_context': {
             u'greeting': u'こんにちは',
@@ -36,4 +40,16 @@ def test_parse_string(string_data):
         u'Yay #python': u'Cool!'
     }
 
-    assert parse_string(string_data) == expected
+    assert poyo.parse_string(string_data) == expected
+
+    yaml_stream.seek(0)
+    assert poyo.load(yaml_stream) == expected
+
+    yaml_stream.seek(0)
+    assert next(poyo.load_all(yaml_stream)) == expected
+
+
+def test_yaml_dump():
+    with pytest.raises(NotImplementedError):
+        poyo.dump({1: 2}, stream=None)
+        poyo.dump_all([{1: 2}, {3: 4}], stream=None)

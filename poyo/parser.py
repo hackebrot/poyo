@@ -239,3 +239,23 @@ class _Parser(object):
 def parse_string(string):
     parser = _Parser(string)
     return parser()
+
+
+def load(stream):
+    return parse_string(stream.read())
+
+
+def load_all(stream):
+    documents = DASHES.split(stream.read())
+    for doc in documents:
+        if not doc:
+            continue
+        yield parse_string(doc)
+
+
+def dump(*args, **kwargs):
+    raise NotImplementedError('poyo does not support object dumping')
+
+
+def dump_all(*args, **kwargs):
+    raise NotImplementedError('poyo does not support object dumping')
