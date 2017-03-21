@@ -18,6 +18,7 @@ Bug Reports and Suggestions
 * Georgi Valkov (`@gvalkov`_)
 * Jakub Kadlubiec (`@jakubka`_)
 * Nicholas Chammas (`@nchammas`_)
+* Michael Kennedyc (`@mikeckennedy`_)
 * `@sathlan`_
 
 .. _`@eykd`: https://github.com/eykd
@@ -26,3 +27,4 @@ Bug Reports and Suggestions
 .. _`@jakubka`: https://github.com/jakubka
 .. _`@nchammas`: https://github.com/nchammas
 .. _`@sathlan`: https://github.com/sathlan
+.. _`@mikeckennedy`: https://github.com/mikeckennedy
