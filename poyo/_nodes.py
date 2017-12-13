@@ -3,6 +3,7 @@
 
 class TreeElement(object):
     """Helper class to identify internal classes."""
+
     def __init__(self, **kwargs):
         pass
 
@@ -12,6 +13,7 @@ class ContainerMixin(object):
 
     Containers can be called to return a dict representation.
     """
+
     def __init__(self, **kwargs):
         self._children = []
         super(ContainerMixin, self).__init__(**kwargs)
@@ -21,7 +23,10 @@ class ContainerMixin(object):
             yield c
 
     def __call__(self):
-        return {c.name: c() for c in self}
+        retval = {}
+        for c in self:
+            retval[c.name] = c()
+        return retval
 
     def add_child(self, child):
         """If the given object is an instance of Child add it to self and
@@ -38,6 +43,7 @@ class ContainerMixin(object):
 
 class ChildMixin(object):
     """Mixin that can be attached to Container object."""
+
     def __init__(self, **kwargs):
         parent = kwargs['parent']
 
@@ -51,6 +57,7 @@ class ChildMixin(object):
 
 class Root(ContainerMixin, TreeElement):
     """Pure Container class to represent the root of a YAML config."""
+
     def __init__(self, **kwargs):
         super(Root, self).__init__(**kwargs)
         self.level = -1
@@ -58,6 +65,7 @@ class Root(ContainerMixin, TreeElement):
 
 class Section(ContainerMixin, ChildMixin, TreeElement):
     """Class that can act as a Child, but also as a Container."""
+
     def __init__(self, name, level, **kwargs):
         super(Section, self).__init__(**kwargs)
         self.name = name
@@ -71,6 +79,7 @@ class Simple(ChildMixin, TreeElement):
     """Class that can solely be used as a Child, f.i. simple key value pairs
     in a config.
     """
+
     def __init__(self, name, level, value, **kwargs):
         super(Simple, self).__init__(**kwargs)
         self.name = name
