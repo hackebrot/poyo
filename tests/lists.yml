@@ -1,0 +1,13 @@
+a:
+  - 1
+  - 2 # comment between a and b
+b:
+  - 3
+  - 4
+c:
+  - 5
+  - 6
+# comment between c and d
+d:
+  - 7
+  - 8
