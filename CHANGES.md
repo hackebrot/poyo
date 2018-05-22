@@ -1,3 +1,13 @@
+# 0.4.1
+
+### Bugfixes
+
+* Update regex patterns to allow for no newline at the end of the given string,
+  thanks to [@mikeckennedy][@mikeckennedy] and [@hackebrot][@hackebrot]
+  (#13, #14)
+
+[@mikeckennedy]: https://github.com/mikeckennedy
+
 # 0.4.0
 
 ### Features
