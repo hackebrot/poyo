@@ -71,3 +71,26 @@ def test_parse_string_no_newline_list(string_data):
         },
     }
     assert parse_string(string_data) == expected
+
+
+@pytest.mark.parametrize('ymlfile', ['lists'])
+def test_parse_string_lists(string_data):
+    expected = {
+        u'a': [
+            1,
+            2,
+        ],
+        u'b': [
+            3,
+            4,
+        ],
+        u'c': [
+            5,
+            6,
+        ],
+        u'd': [
+            7,
+            8,
+        ],
+    }
+    assert parse_string(string_data) == expected

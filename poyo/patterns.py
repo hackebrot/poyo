@@ -19,7 +19,7 @@ _SIMPLE = _INDENT + _VAR + _BLANK + _VALUE + _INLINE_COMMENT + _OPT_NEWLINE
 
 _LIST_VALUE = (
     _BLANK + r"-" + _BLANK +
-    r"('.*?'|\".*?\"|[^#]+?)" +
+    r"('.*?'|\".*?\"|[^#\n]+?)" +
     _INLINE_COMMENT + _OPT_NEWLINE
 )
 _LIST_ITEM = _BLANK_LINE + r"|" + _COMMENT + r"|" + _LIST_VALUE
