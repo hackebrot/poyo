@@ -1,21 +1,23 @@
-.PHONY: clean-tox clean-build clean-py
+.DEFAULT_GOAL := help
 
-help:
-	@echo "clean-build - remove build artifacts"
-	@echo "clean-py - remove Python file artifacts"
-	@echo "clean-tox - remove tox file artifacts"
-	@echo "clean - remove all file artifacts"
+.PHONY: clean
+clean: clean-tox clean-build clean-py ## Remove all file artifacts
 
-clean: clean-tox clean-build clean-py
-
-clean-tox:
+.PHONY: clean-tox
+clean-tox: ## Remove tox file artifacts
 	rm -rf .tox/
 
-clean-build:
+.PHONY: clean-build
+clean-build: ## Remove build artifacts
 	rm -rf build/
 	rm -rf dist/
 	rm -rf *.egg-info
 
-clean-py:
+.PHONY: clean-py
+clean-py: ## Remove Python file artifacts
 	find . -type f -name "*.py[co]" -delete
 	find . -type d -name "__pycache__" -delete
+
+.PHONY: help
+help:
+	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-16s\033[0m %s\n", $$1, $$2}'
