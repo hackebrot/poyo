@@ -1,3 +1,12 @@
+# 0.4.2
+
+### Bugfixes
+
+* Resolve a bug with list items and comments, thanks to
+  [@ishanarora][@ishanarora] (#18)
+
+[@ishanarora]: https://github.com/ishanarora
+
 # 0.4.1
 
 ### Bugfixes
