@@ -16,15 +16,15 @@ types are **str**, **bool**, **int**, **float**, **NoneType** as well as
 what Poyo understands.
 
 .. |pypi| image:: https://img.shields.io/pypi/v/poyo.svg
-   :target: https://pypi.python.org/pypi/poyo
+   :target: https://pypi.org/project/poyo/
    :alt: PyPI Package
 
 .. |pyversions| image:: https://img.shields.io/pypi/pyversions/poyo.svg
-   :target: https://pypi.python.org/pypi/poyo/
+   :target: https://pypi.org/project/poyo/
    :alt: PyPI Python Versions
 
 .. |license| image:: https://img.shields.io/pypi/l/poyo.svg
-   :target: https://pypi.python.org/pypi/poyo
+   :target: https://pypi.org/project/poyo/
    :alt: PyPI Package License
 
 .. |travis-ci| image:: https://travis-ci.org/hackebrot/poyo.svg?branch=master
@@ -39,7 +39,7 @@ Installation
     $ pip install poyo
 
 .. _`PyPI`: https://pypi.org/project/poyo/
-.. _`pip`: https://pypi.python.org/pypi/pip/
+.. _`pip`: https://pypi.org/project/pip/
 
 Poyo is 100% Python and does not require any additional libs.
 
