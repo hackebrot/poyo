@@ -38,7 +38,7 @@ Installation
 
     $ pip install poyo
 
-.. _`PyPI`: https://pypi.python.org/pypi
+.. _`PyPI`: https://pypi.org/project/poyo/
 .. _`pip`: https://pypi.python.org/pypi/pip/
 
 Poyo is 100% Python and does not require any additional libs.
