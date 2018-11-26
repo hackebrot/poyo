@@ -1,3 +1,12 @@
+# 0.4.3
+
+### Bugfixes
+
+* Fix link to poyo on PyPI, thanks to
+  [@mrshu][@mrshu] (#20)
+
+[@mrshu]: https://github.com/mrshu
+
 # 0.4.2
 
 ### Bugfixes
