@@ -12,6 +12,7 @@ Pull Requests and Patches
 
 * David Eyk (`@eykd`_)
 * Ishan Arora (`@ishanarora`_)
+* Marek Šuppa (`@mrshu`_)
 
 Bug Reports and Suggestions
 ---------------------------
@@ -30,3 +31,4 @@ Bug Reports and Suggestions
 .. _`@mikeckennedy`: https://github.com/mikeckennedy
 .. _`@nchammas`: https://github.com/nchammas
 .. _`@sathlan`: https://github.com/sathlan
+.. _`@mrshu`: https://github.com/mrshu
