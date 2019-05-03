@@ -204,7 +204,7 @@ class _Parser(object):
                 result += line + concat
             else:
                 result += "\n"
-        return result.rstrip().replace(" \n", "\n")
+        return result.rstrip(" ").replace(" \n", "\n")
 
     @log_callback
     def parse_multiline_str(self, match):
@@ -218,13 +218,16 @@ class _Parser(object):
         if not lines:
             return Simple(variable, level, "", parent=parent)
 
-        first_indent = len(lines[0]) - len(lines[0].lstrip())
+        first_indent = groups['forceindent']
+        if first_indent:
+            first_indent = int(first_indent)
+        else:
+            first_indent = len(lines[0]) - len(lines[0].lstrip())
         value = self.join_lines([l[first_indent:] for l in lines], keep_newlines)
         if not chomp:
             value = value.rstrip("\n") + "\n"
         elif chomp == "-":
             value = value.rstrip("\n")
-
         return Simple(variable, level, value.rstrip(""), parent=parent)
 
     def find_match(self):

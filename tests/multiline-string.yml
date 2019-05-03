@@ -8,5 +8,11 @@ Hello World:
     withbreaks: |
         Here we will
         keep our linebreaks
+    indent: >+6
+        This has two leading spaces and two trailing new lines.
+
+
     chomped: >-
         Now trailing new line here.
+
+

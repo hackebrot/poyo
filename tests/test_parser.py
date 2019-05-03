@@ -103,6 +103,7 @@ def test_parse_multiline_string(string_data):
         u"Hello World": {
             u"multi": u"This is a multiline string. It can contain all manners of characters.\nSingle line breaks are ignored, but blank linkes cause line breaks.\n",
             u"withbreaks": u"Here we will\nkeep our linebreaks\n",
+            u"indent": u"  This has two leading spaces and two trailing new lines.\n\n",
             u"chomped": u"Now trailing new line here.",
         }
     }
