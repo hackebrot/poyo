@@ -94,3 +94,16 @@ def test_parse_string_lists(string_data):
         ],
     }
     assert parse_string(string_data) == expected
+
+@pytest.mark.parametrize('ymlfile', ['multiline-string'])
+def test_parse_multiline_string(string_data):
+    import logging
+    logging.basicConfig(level=logging.DEBUG)
+    expected = {
+        u"Hello World": {
+            u"multi": u"This is a multiline string. It can contain all manners of characters.\nSingle line breaks are ignored, but blank linkes cause line breaks.\n",
+            u"withbreaks": u"Here we will\nkeep our linebreaks\n",
+            u"chomped": u"Now trailing new line here.",
+        }
+    }
+    assert parse_string(string_data) == expected

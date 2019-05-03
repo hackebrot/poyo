@@ -1,0 +1,12 @@
+Hello World:
+    multi: >
+        This is a multiline string.
+        It can contain all manners of characters.
+
+        Single line breaks are ignored,
+        but blank linkes cause line breaks.
+    withbreaks: |
+        Here we will
+        keep our linebreaks
+    chomped: >-
+        Now trailing new line here.

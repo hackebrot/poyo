@@ -3,8 +3,10 @@
 import re
 
 _INDENT = r"(?P<indent>^ *)"
+_INDENT_MATCH = r"(?P=indent)"
 _VAR = r"(?P<variable>.+?):"
 _VALUE = r"(?P<value>(?:(?P<q2>['\"]).*?(?P=q2))|[^#]+?)"
+_STR_VALUE = r"((?:(?P<q2>['\"]).*?(?P=q2))|[^#]+?)"
 _NEWLINE = r"$\n"
 _OPT_NEWLINE = r"$\n?"
 _BLANK = r" +"
@@ -16,6 +18,10 @@ _DASHES = r"^---" + _NEWLINE
 
 _SECTION = _INDENT + _VAR + _INLINE_COMMENT + _NEWLINE
 _SIMPLE = _INDENT + _VAR + _BLANK + _VALUE + _INLINE_COMMENT + _OPT_NEWLINE
+
+_MULTILINE = _INDENT + _VAR + _BLANK + r"(?P<blockstyle>[>|])(?P<chomping>[+-]?) *" + _INLINE_COMMENT + _NEWLINE
+_MULTILINE_STR = _INDENT_MATCH + _BLANK + _STR_VALUE + _NEWLINE + r"|" + _BLANK_LINE
+_MULTILINE_SECTION = _MULTILINE + r"(?P<lines>(?:" + _MULTILINE_STR + r")*" + r")"
 
 _LIST_VALUE = (
     _BLANK + r"-" + _BLANK +
@@ -51,3 +57,4 @@ FALSE = re.compile(_FALSE)
 FLOAT = re.compile(_FLOAT)
 INT = re.compile(_INT)
 STR = re.compile(_STR)
+MULTILINE_STR = re.compile(_MULTILINE_SECTION, re.MULTILINE)
