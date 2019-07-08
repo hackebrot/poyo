@@ -4,12 +4,12 @@ Hello World:
         It can contain all manners of characters.
 
         Single line breaks are ignored,
-        but blank linkes cause line breaks.
+        but blank lines cause line breaks.
     withbreaks: |
         Here we will
         keep our linebreaks
     indent: >+6
-        This has two leading spaces and two trailing new lines.
+        This has 2 leading spaces and 2 trailing new lines.
 
 
     chomped: >-

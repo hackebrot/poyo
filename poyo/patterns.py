@@ -19,9 +19,17 @@ _DASHES = r"^---" + _NEWLINE
 _SECTION = _INDENT + _VAR + _INLINE_COMMENT + _NEWLINE
 _SIMPLE = _INDENT + _VAR + _BLANK + _VALUE + _INLINE_COMMENT + _OPT_NEWLINE
 
-_MULTILINE = _INDENT + _VAR + _BLANK + r"(?P<blockstyle>[>|])(?P<chomping>[+-]?)(?P<forceindent>\d*) *" + _INLINE_COMMENT + _NEWLINE
-_MULTILINE_STR = _INDENT_MATCH + _BLANK + _STR_VALUE + _NEWLINE + r"|" + _BLANK_LINE
-_MULTILINE_SECTION = _MULTILINE + r"(?P<lines>(?:" + _MULTILINE_STR + r")*" + r")"
+_MULTILINE = (
+    _INDENT + _VAR + _BLANK +
+    r"(?P<blockstyle>[>|])(?P<chomping>[+-]?)(?P<forceindent>\d*) *" +
+    _INLINE_COMMENT + _NEWLINE
+)
+_MULTILINE_STR = (
+    _INDENT_MATCH + _BLANK + _STR_VALUE + _NEWLINE + r"|" + _BLANK_LINE
+)
+_MULTILINE_SECTION = (
+    _MULTILINE + r"(?P<lines>(?:" + _MULTILINE_STR + r")*" + r")"
+)
 
 _LIST_VALUE = (
     _BLANK + r"-" + _BLANK +

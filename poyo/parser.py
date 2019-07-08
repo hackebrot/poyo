@@ -223,7 +223,10 @@ class _Parser(object):
             first_indent = int(first_indent)
         else:
             first_indent = len(lines[0]) - len(lines[0].lstrip())
-        value = self.join_lines([l[first_indent:] for l in lines], keep_newlines)
+        value = self.join_lines(
+            [l[first_indent:] for l in lines],
+            keep_newlines
+        )
         if not chomp:
             value = value.rstrip("\n") + "\n"
         elif chomp == "-":
