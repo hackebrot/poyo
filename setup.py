@@ -4,7 +4,7 @@
 import codecs
 import os
 
-from setuptools import setup
+import setuptools
 
 
 def read(fname):
@@ -12,7 +12,7 @@ def read(fname):
     return codecs.open(file_path, encoding='utf-8').read()
 
 
-setup(
+setuptools.setup(
     name='poyo',
     version='0.5.0',
     author='Raphael Pierzina',
@@ -23,10 +23,8 @@ setup(
     url='https://github.com/hackebrot/poyo',
     description='A lightweight YAML Parser for Python',
     long_description=read('README.rst'),
-    packages=[
-        'poyo',
-    ],
-    package_dir={'poyo': 'poyo'},
+    packages=setuptools.find_packages("src"),
+    package_dir={"": "src"},
     include_package_data=True,
     zip_safe=False,
     install_requires=[],
