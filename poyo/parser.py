@@ -11,7 +11,7 @@ from .exceptions import (
 
 from .patterns import (
     COMMENT, BLANK_LINE, DASHES, LIST, SIMPLE, SECTION,
-    LIST_ITEM, NULL, TRUE, FALSE, FLOAT, INT, STR,
+    LIST_ITEM, NULL, TRUE, FALSE, FLOAT, INT, STR, MULTILINE_STR
 )
 
 logger = logging.getLogger(__name__)
@@ -76,6 +76,7 @@ class _Parser(object):
             (BLANK_LINE, self.parse_blankline),
             (DASHES, self.parse_dashes),
             (LIST, self.parse_list),
+            (MULTILINE_STR, self.parse_multiline_str),
             (SIMPLE, self.parse_simple),
             (SECTION, self.parse_section),
         )
@@ -194,6 +195,43 @@ class _Parser(object):
     def parse_str(self, match):
         quotes = match.group('quotes')
         return match.group().strip(quotes)
+
+    def join_lines(self, lines, keep_newlines=False):
+        result = ""
+        concat = "\n" if keep_newlines else " "
+        for line in lines:
+            if line:
+                result += line + concat
+            else:
+                result += "\n"
+        return result.rstrip(" ").replace(" \n", "\n")
+
+    @log_callback
+    def parse_multiline_str(self, match):
+        groups = match.groupdict()
+        keep_newlines = groups['blockstyle'] == "|"
+        chomp = groups['chomping']
+        level = len(groups['indent'])
+        parent = self.find_at_level(level)
+        variable = self.read_from_tag(groups['variable'])
+        lines = groups['lines'].splitlines()
+        if not lines:
+            return Simple(variable, level, "", parent=parent)
+
+        first_indent = groups['forceindent']
+        if first_indent:
+            first_indent = int(first_indent)
+        else:
+            first_indent = len(lines[0]) - len(lines[0].lstrip())
+        value = self.join_lines(
+            [l[first_indent:] for l in lines],
+            keep_newlines
+        )
+        if not chomp:
+            value = value.rstrip("\n") + "\n"
+        elif chomp == "-":
+            value = value.rstrip("\n")
+        return Simple(variable, level, value.rstrip(""), parent=parent)
 
     def find_match(self):
         """Try to find a pattern that matches the source and calll a parser

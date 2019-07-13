@@ -1,0 +1,18 @@
+Hello World:
+    multi: >
+        This is a multiline string.
+        It can contain all manners of characters.
+
+        Single line breaks are ignored,
+        but blank lines cause line breaks.
+    withbreaks: |
+        Here we will
+        keep our linebreaks
+    indent: >+6
+        This has 2 leading spaces and 2 trailing new lines.
+
+
+    chomped: >-
+        Now trailing new line here.
+
+
