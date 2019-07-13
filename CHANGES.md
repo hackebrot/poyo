@@ -1,3 +1,11 @@
+# 0.5.0
+
+### Features
+
+* Add support for multiline strings, thanks to [@maebert][@maebert] (#22)
+
+[@maebert]: https://github.com/maebert
+
 # 0.4.3
 
 ### Bugfixes
