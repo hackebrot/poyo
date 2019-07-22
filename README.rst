@@ -88,6 +88,7 @@ Example
         'some:int': 1000000
         foo: "hallo #welt" #Inline comment :)
         trueish: Falseeeeeee
+        blog   : raphael.codes
         relative-root: /          # web app root path (default: '')
         lektor: 0.0.0.0:5000      # local build
         doc_tools:
@@ -125,6 +126,7 @@ Example
             u'some:int': 1000000,
             u'foo': u'hallo #welt',
             u'trueish': u'Falseeeeeee',
+            u'blog': u'raphael.codes',
             u'doc_tools': [u'mkdocs', u'sphinx', None],
         },
         u'zZz': True,

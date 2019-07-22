@@ -27,6 +27,7 @@ def test_parse_string(string_data):
             u"some:int": 1000000,
             u"foo": u"hallo #welt",
             u"trueish": u"Falseeeeeee",
+            u"blog": u"raphael.codes",
             u"doc_tools": [u"mkdocs", u"sphinx", None],
         },
         u"zZz": True,
