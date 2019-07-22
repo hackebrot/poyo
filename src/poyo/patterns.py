@@ -4,7 +4,7 @@ import re
 
 _INDENT = r"(?P<indent>^ *)"
 _INDENT_MATCH = r"(?P=indent)"
-_VAR = r"(?P<variable>.+?):"
+_VAR = r"(?P<variable>.+?)\s*:"
 _VALUE = r"(?P<value>(?:(?P<q2>['\"]).*?(?P=q2))|[^#]+?)"
 _STR_VALUE = r"((?:(?P<q2>['\"]).*?(?P=q2))|[^#]+?)"
 _NEWLINE = r"$\n"
