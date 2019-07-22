@@ -23,6 +23,7 @@ Bug Reports and Suggestions
 * Nicholas Chammas (`@nchammas`_)
 * Michael Kennedy (`@mikeckennedy`_)
 * `@sathlan`_
+* Laurent Brack (`@lbrack`_)
 
 .. _`@eykd`: https://github.com/eykd
 .. _`@gvalkov`: https://github.com/gvalkov
@@ -34,3 +35,4 @@ Bug Reports and Suggestions
 .. _`@sathlan`: https://github.com/sathlan
 .. _`@mrshu`: https://github.com/mrshu
 .. _`@maebert`: https://github.com/maebert
+.. _`@lbrack`: https://github.com/lbrack
