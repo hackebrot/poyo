@@ -10,6 +10,7 @@
 * Ishan Arora ([@ishanarora](https://github.com/ishanarora))
 * Marek Šuppa ([@mrshu](https://github.com/mrshu))
 * Manuel Ebert ([@maebert](https://github.com/maebert))
+* Rob Horton ([@Um9i](https://github.com/Um9i))
 
 ## Bug Reports and Suggestions
 
