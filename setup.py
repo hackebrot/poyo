@@ -23,6 +23,7 @@ setuptools.setup(
     url='https://github.com/hackebrot/poyo',
     description='A lightweight YAML Parser for Python',
     long_description=read('README.md'),
+    long_description_content_type="text/markdown",
     packages=setuptools.find_packages("src"),
     package_dir={"": "src"},
     include_package_data=True,
