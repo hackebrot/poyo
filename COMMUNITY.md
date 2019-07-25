@@ -1,22 +1,22 @@
-# Contributors
+# Community
 
 ## Development Lead
 
-* Raphael Pierzina ([@hackebrot](https://github.com/hackebrot))
+* [@hackebrot](https://github.com/hackebrot)
 
 ## Pull Requests and Patches
 
-* David Eyk ([@eykd](https://github.com/eykd))
-* Ishan Arora ([@ishanarora](https://github.com/ishanarora))
-* Marek Šuppa ([@mrshu](https://github.com/mrshu))
-* Manuel Ebert ([@maebert](https://github.com/maebert))
-* Rob Horton ([@Um9i](https://github.com/Um9i))
+* [@eykd](https://github.com/eykd)
+* [@ishanarora](https://github.com/ishanarora)
+* [@mrshu](https://github.com/mrshu)
+* [@maebert](https://github.com/maebert)
+* [@Um9i](https://github.com/Um9i)
 
 ## Bug Reports and Suggestions
 
-* Georgi Valkov ([@gvalkov](https://github.com/gvalkov))
-* Jakub Kadlubiec ([@jakubka](https://github.com/jakubka))
-* Nicholas Chammas ([@nchammas](https://github.com/nchammas))
-* Michael Kennedy ([@mikeckennedy](https://github.com/mikeckennedy))
+* [@gvalkov](https://github.com/gvalkov)
+* [@jakubka](https://github.com/jakubka)
+* [@nchammas](https://github.com/nchammas)
+* [@mikeckennedy](https://github.com/mikeckennedy)
 * [@sathlan](https://github.com/sathlan)
-* Laurent Brack ([@lbrack](https://github.com/lbrack))
+* [@lbrack](https://github.com/lbrack)
