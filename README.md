@@ -233,7 +233,7 @@ rooms, and mailing lists is expected to follow the [PyPI Code of
 Conduct][code of conduct].
 
 [code of conduct]: https://www.pypa.io/en/latest/code-of-conduct/
-[community]: https://github.com/hackebrot/poyo/blob/master/CONTRIBUTORS.md
+[community]: https://github.com/hackebrot/poyo/blob/master/COMMUNITY.md
 [good first issue]: https://github.com/hackebrot/poyo/labels/good%20first%20issue
 
 ## License
