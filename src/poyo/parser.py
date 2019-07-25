@@ -6,12 +6,27 @@ import logging
 from ._nodes import Root, Section, Simple
 
 from .exceptions import (
-    NoMatchException, NoParentException, NoTypeException, IgnoredMatchException
+    NoMatchException,
+    NoParentException,
+    NoTypeException,
+    IgnoredMatchException,
 )
 
 from .patterns import (
-    COMMENT, BLANK_LINE, DASHES, LIST, SIMPLE, SECTION,
-    LIST_ITEM, NULL, TRUE, FALSE, FLOAT, INT, STR, MULTILINE_STR
+    COMMENT,
+    BLANK_LINE,
+    DASHES,
+    LIST,
+    SIMPLE,
+    SECTION,
+    LIST_ITEM,
+    NULL,
+    TRUE,
+    FALSE,
+    FLOAT,
+    INT,
+    STR,
+    MULTILINE_STR,
 )
 
 logger = logging.getLogger(__name__)
@@ -36,29 +51,28 @@ def log_callback(wrapped_function):
 
     def debug_log(message):
         """Helper to log an escaped version of the given message to DEBUG"""
-        logger.debug(message.encode('unicode_escape').decode())
+        logger.debug(message.encode("unicode_escape").decode())
 
     @functools.wraps(wrapped_function)
     def _wrapper(parser, match, **kwargs):
         func_name = wrapped_function.__name__
 
-        debug_log(u'{func_name} <- {matched_string}'.format(
-            func_name=func_name,
-            matched_string=match.group(),
-        ))
+        debug_log(
+            u"{func_name} <- {matched_string}".format(
+                func_name=func_name, matched_string=match.group()
+            )
+        )
 
         try:
             result = wrapped_function(parser, match, **kwargs)
         except IgnoredMatchException:
-            debug_log(u'{func_name} -> IGNORED'.format(func_name=func_name))
+            debug_log(u"{func_name} -> IGNORED".format(func_name=func_name))
             raise
 
-        debug_log(u'{func_name} -> {result}'.format(
-            func_name=func_name,
-            result=result,
-        ))
+        debug_log(u"{func_name} -> {result}".format(func_name=func_name, result=result))
 
         return result
+
     return _wrapper
 
 
@@ -94,9 +108,7 @@ class _Parser(object):
         for candidate in reversed(self.seen):
             if candidate.level < level:
                 return candidate
-        raise NoParentException(
-            'Unable to find element at level {}'.format(level)
-        )
+        raise NoParentException("Unable to find element at level {}".format(level))
 
     def read_from_tag(self, string):
         for pattern, callback in self.tag_rules:
@@ -133,28 +145,25 @@ class _Parser(object):
     @log_callback
     def parse_list(self, match):
         groups = match.groupdict()
-        level = len(groups['indent'])
+        level = len(groups["indent"])
         parent = self.find_at_level(level)
 
-        item_matches = LIST_ITEM.findall(groups['items'])
+        item_matches = LIST_ITEM.findall(groups["items"])
 
-        list_items = [
-            self.read_from_tag(value)
-            for value in item_matches
-        ]
+        list_items = [self.read_from_tag(value) for value in item_matches]
 
-        variable = self.read_from_tag(groups['variable'])
+        variable = self.read_from_tag(groups["variable"])
         return Simple(variable, level, list_items, parent=parent)
 
     @log_callback
     def parse_simple(self, match):
         groups = match.groupdict()
 
-        level = len(groups['indent'])
+        level = len(groups["indent"])
         parent = self.find_at_level(level)
 
-        variable = self.read_from_tag(groups['variable'])
-        value = self.read_from_tag(groups['value'])
+        variable = self.read_from_tag(groups["variable"])
+        value = self.read_from_tag(groups["value"])
 
         return Simple(variable, level, value, parent=parent)
 
@@ -162,14 +171,10 @@ class _Parser(object):
     def parse_section(self, match):
         groups = match.groupdict()
 
-        level = len(groups['indent'])
+        level = len(groups["indent"])
         parent = self.find_at_level(level)
 
-        return Section(
-            self.read_from_tag(groups['variable']),
-            level,
-            parent=parent
-        )
+        return Section(self.read_from_tag(groups["variable"]), level, parent=parent)
 
     @log_callback
     def parse_null(self, match):
@@ -193,7 +198,7 @@ class _Parser(object):
 
     @log_callback
     def parse_str(self, match):
-        quotes = match.group('quotes')
+        quotes = match.group("quotes")
         return match.group().strip(quotes)
 
     def join_lines(self, lines, keep_newlines=False):
@@ -209,24 +214,21 @@ class _Parser(object):
     @log_callback
     def parse_multiline_str(self, match):
         groups = match.groupdict()
-        keep_newlines = groups['blockstyle'] == "|"
-        chomp = groups['chomping']
-        level = len(groups['indent'])
+        keep_newlines = groups["blockstyle"] == "|"
+        chomp = groups["chomping"]
+        level = len(groups["indent"])
         parent = self.find_at_level(level)
-        variable = self.read_from_tag(groups['variable'])
-        lines = groups['lines'].splitlines()
+        variable = self.read_from_tag(groups["variable"])
+        lines = groups["lines"].splitlines()
         if not lines:
             return Simple(variable, level, "", parent=parent)
 
-        first_indent = groups['forceindent']
+        first_indent = groups["forceindent"]
         if first_indent:
             first_indent = int(first_indent)
         else:
             first_indent = len(lines[0]) - len(lines[0].lstrip())
-        value = self.join_lines(
-            [l[first_indent:] for l in lines],
-            keep_newlines
-        )
+        value = self.join_lines([l[first_indent:] for l in lines], keep_newlines)
         if not chomp:
             value = value.rstrip("\n") + "\n"
         elif chomp == "-":
@@ -258,8 +260,7 @@ class _Parser(object):
             return match
 
         raise NoMatchException(
-            'None of the known patterns match for {}'
-            ''.format(self.source[self.pos:])
+            "None of the known patterns match for {}" "".format(self.source[self.pos :])
         )
 
     def __call__(self):

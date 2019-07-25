@@ -3,6 +3,7 @@
 
 class TreeElement(object):
     """Helper class to identify internal classes."""
+
     def __init__(self, **kwargs):
         pass
 
@@ -12,6 +13,7 @@ class ContainerMixin(object):
 
     Containers can be called to return a dict representation.
     """
+
     def __init__(self, **kwargs):
         self._children = []
         super(ContainerMixin, self).__init__(**kwargs)
@@ -29,8 +31,7 @@ class ContainerMixin(object):
         """
         if not isinstance(child, ChildMixin):
             raise TypeError(
-                'Requires instance of TreeElement. '
-                'Got {}'.format(type(child))
+                "Requires instance of TreeElement. " "Got {}".format(type(child))
             )
         child.parent = self
         self._children.append(child)
@@ -38,19 +39,19 @@ class ContainerMixin(object):
 
 class ChildMixin(object):
     """Mixin that can be attached to Container object."""
+
     def __init__(self, **kwargs):
-        parent = kwargs['parent']
+        parent = kwargs["parent"]
 
         if not isinstance(parent, ContainerMixin):
-            raise ValueError(
-                'Parent of ChildMixin instance needs to be a Container.'
-            )
+            raise ValueError("Parent of ChildMixin instance needs to be a Container.")
         parent.add_child(self)
         super(ChildMixin, self).__init__(**kwargs)
 
 
 class Root(ContainerMixin, TreeElement):
     """Pure Container class to represent the root of a YAML config."""
+
     def __init__(self, **kwargs):
         super(Root, self).__init__(**kwargs)
         self.level = -1
@@ -58,19 +59,21 @@ class Root(ContainerMixin, TreeElement):
 
 class Section(ContainerMixin, ChildMixin, TreeElement):
     """Class that can act as a Child, but also as a Container."""
+
     def __init__(self, name, level, **kwargs):
         super(Section, self).__init__(**kwargs)
         self.name = name
         self.level = level
 
     def __repr__(self):
-        return u'<Section name: {name}>'.format(name=self.name)
+        return u"<Section name: {name}>".format(name=self.name)
 
 
 class Simple(ChildMixin, TreeElement):
     """Class that can solely be used as a Child, f.i. simple key value pairs
     in a config.
     """
+
     def __init__(self, name, level, value, **kwargs):
         super(Simple, self).__init__(**kwargs)
         self.name = name
@@ -81,7 +84,6 @@ class Simple(ChildMixin, TreeElement):
         return self.value
 
     def __repr__(self):
-        return u'<Simple name: {name}, value: {value}>'.format(
-            name=self.name,
-            value=self.value
+        return u"<Simple name: {name}, value: {value}>".format(
+            name=self.name, value=self.value
         )
