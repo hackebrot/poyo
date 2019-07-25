@@ -4,15 +4,20 @@
 
 * Add support for multiline strings, thanks to [@maebert][@maebert] (#22)
 
-[@maebert]: https://github.com/maebert
-
-# 0.4.3
-
 ### Bugfixes
 
-* Fix link to poyo on PyPI, thanks to
-  [@mrshu][@mrshu] (#20)
+* Fix link to poyo on PyPI, thanks to [@mrshu][@mrshu] (#20)
+* Trim trailing whitespace in variable, thanks to [@hackebrot][@hackebrot] (#25)
 
+### Improvements
+
+* Update project to use src directory, thanks to [@hackebrot][@hackebrot] (#24)
+* Convert rst files to md, thanks to [@Um9i][@Um9i] (#28)
+* Reformat code base with black, thanks to [@Um9i][@Um9i] (#29)
+
+[@maebert]: https://github.com/maebert
+[@Um9i]: https://github.com/Um9i
+[@hackebrot]: https://github.com/hackebrot
 [@mrshu]: https://github.com/mrshu
 
 # 0.4.2
