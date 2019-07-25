@@ -45,10 +45,7 @@ def test_parse_string(string_data):
 @pytest.mark.parametrize("ymlfile", ["no-newline"])
 def test_parse_string_no_newline(string_data):
     expected = {
-        u"Hello World": {
-            u"name": u"Toni Chu",
-            u"gh": u"https://github.com/{0}.git"
-        },
+        u"Hello World": {u"name": u"Toni Chu", u"gh": u"https://github.com/{0}.git"},
         u"Yay #python": 3.6,
     }
     assert parse_string(string_data) == expected
@@ -81,14 +78,12 @@ def test_parse_multiline_string(string_data):
     expected = {
         u"Hello World": {
             u"multi": (
-                u"This is a multiline string. It can contain all manners " +
-                u"of characters.\nSingle line breaks are ignored, but blank " +
-                u"lines cause line breaks.\n"
+                u"This is a multiline string. It can contain all manners "
+                + u"of characters.\nSingle line breaks are ignored, but blank "
+                + u"lines cause line breaks.\n"
             ),
             u"withbreaks": u"Here we will\nkeep our linebreaks\n",
-            u"indent": (
-                u"  This has 2 leading spaces and 2 trailing new lines.\n\n"
-            ),
+            u"indent": (u"  This has 2 leading spaces and 2 trailing new lines.\n\n"),
             u"chomped": u"Now trailing new line here.",
         }
     }
