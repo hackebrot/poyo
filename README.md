@@ -25,7 +25,7 @@ pip install poyo
 [PyPI]: https://pypi.org/project/poyo/
 [pip]: https://pypi.org/project/pip/
 
-This project does not have any additional requirements.
+This package does not have any additional requirements. 📦
 
 ## Usage
 
@@ -98,7 +98,7 @@ Hello World:
 "Yay #python": Cool!
 ```
 
-## Output Python dict
+### Output Python dict
 
 ```python
 {
@@ -236,8 +236,8 @@ Would you like to contribute to **poyo**? You're awesome! 😃
 
 Please check out the [good first issue][good first issue] label for tasks,
 that are good candidates for your first contribution to poyo. Your
-contributions are greatly appreciated! Every little bit helps, and credit
-will always be given. Join the poyo [community][community]! 🌍🌏🌎
+contributions are greatly appreciated! Every little bit helps and credit will
+always be given. Join the poyo [community][community]! 🌍🌏🌎
 
 Everyone interacting in the poyo project's codebases, issue trackers, chat
 rooms, and mailing lists is expected to follow the [PyPI Code of
