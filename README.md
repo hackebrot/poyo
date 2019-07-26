@@ -68,6 +68,12 @@ default_context: # foobar
     # allthethings
     'some:int': 1000000
     foo: "hallo #welt" #Inline comment :)
+    longtext: >
+        This is a multiline string.
+        It can contain all manners of characters.
+
+        Single line breaks are ignored,
+        but blank linkes cause line breaks.
     trueish: Falseeeeeee
     blog   : raphael.codes
     relative-root: /          # web app root path (default: '')
@@ -106,6 +112,11 @@ Hello World:
         123: 456.789,
         u"some:int": 1000000,
         u"foo": u"hallo #welt",
+        u"longtext": (
+            u"This is a multiline string. It can contain all "
+            u"manners of characters.\nSingle line breaks are "
+            u"ignored, but blank linkes cause line breaks.\n"
+        ),
         u"trueish": u"Falseeeeeee",
         u"blog": u"raphael.codes",
         u"doc_tools": [u"mkdocs", u"sphinx", None],

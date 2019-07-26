@@ -26,6 +26,11 @@ def test_parse_string(string_data):
             123: 456.789,
             u"some:int": 1000000,
             u"foo": u"hallo #welt",
+            u"longtext": (
+                u"This is a multiline string. It can contain all "
+                u"manners of characters.\nSingle line breaks are "
+                u"ignored, but blank linkes cause line breaks.\n"
+            ),
             u"trueish": u"Falseeeeeee",
             u"blog": u"raphael.codes",
             u"doc_tools": [u"mkdocs", u"sphinx", None],
