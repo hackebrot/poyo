@@ -11,6 +11,7 @@
 * [@mrshu](https://github.com/mrshu)
 * [@maebert](https://github.com/maebert)
 * [@Um9i](https://github.com/Um9i)
+* [@lukaselmer](https://github.com/lukaselmer)
 
 ## Bug Reports and Suggestions
 
