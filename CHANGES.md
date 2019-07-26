@@ -4,6 +4,15 @@
 
 * Add support for multiline strings, thanks to [@maebert][@maebert] (#22)
 
+    ```yaml
+    longtext: >
+        This is a multiline string.
+        It can contain all manners of characters.
+
+        Single line breaks are ignored,
+        but blank linkes cause line breaks.
+    ```
+
 ### Bugfixes
 
 * Fix link to poyo on PyPI, thanks to [@mrshu][@mrshu] (#20)
@@ -46,29 +55,29 @@
 * Add support for block comments in sections, thanks to [@jakubka][@jakubka]
   and [@hackebrot][@hackebrot] (#7)
 
-```yaml
-default_context: # foobar
-    greeting: こんにちは
-    # comment
-    # allthethings
-    docs: true
+    ```yaml
+    default_context: # foobar
+        greeting: こんにちは
+        # comment
+        # allthethings
+        docs: true
 
-    123: 456.789
-```
+        123: 456.789
+    ```
 
 ### Improvements
 
 * Set up ``poyo`` logger with NullHandler to log DEBUG messages when parsing,
   thanks to [@hackebrot][@hackebrot]
 
-```text
-DEBUG:poyo.parser:parse_simple <-     123: 456.789
-DEBUG:poyo.parser:parse_int <- 123
-DEBUG:poyo.parser:parse_int -> 123
-DEBUG:poyo.parser:parse_float <- 456.789
-DEBUG:poyo.parser:parse_float -> 456.789
-DEBUG:poyo.parser:parse_simple -> <Simple name: 123, value: 456.789>
-```
+    ```text
+    DEBUG:poyo.parser:parse_simple <-     123: 456.789
+    DEBUG:poyo.parser:parse_int <- 123
+    DEBUG:poyo.parser:parse_int -> 123
+    DEBUG:poyo.parser:parse_float <- 456.789
+    DEBUG:poyo.parser:parse_float -> 456.789
+    DEBUG:poyo.parser:parse_simple -> <Simple name: 123, value: 456.789>
+    ```
 
 ### Bugfixes
 
@@ -89,14 +98,14 @@ DEBUG:poyo.parser:parse_simple -> <Simple name: 123, value: 456.789>
 * Add support for blank lines and comment lines in lists, thanks to
   [@eykd][@eykd] and [@hackebrot][@hackebrot] (#5)
 
-```yaml
-doc_tools:
-    # docs or didn't happen
-    -    mkdocs
-    - 'sphinx'
+    ```yaml
+    doc_tools:
+        # docs or didn't happen
+        -    mkdocs
+        - 'sphinx'
 
-    - null
-```
+        - null
+    ```
 
 ### Improvements
 
@@ -117,29 +126,29 @@ doc_tools:
 
 * Add support for list values
 
-```yaml
-doc_tools:
-    - mkdocs
-    - 'sphinx'
-    - null
-```
+    ```yaml
+    doc_tools:
+        - mkdocs
+        - 'sphinx'
+        - null
+    ```
+
 * Expose ``PoyoException`` in API
 
-```python
-from poyo import PoyoException
-```
+    ```python
+    from poyo import PoyoException
+    ```
 
 ### Bugfixes
 
 * Ignore dashes in lines
 
-```yaml
----
-default_context:
-    foo: "hallo #welt" #Inline comment :)
-    docs: true
-```
-
+    ```yaml
+    ---
+    default_context:
+        foo: "hallo #welt" #Inline comment :)
+        docs: true
+    ```
 
 # 0.1.0
 
