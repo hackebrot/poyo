@@ -1,3 +1,12 @@
+# 0.6.0
+
+### Improvements
+
+* Add a failing test for list objects, thanks to [@lukaselmer][@lukaselmer]
+  (#19)
+
+[@lukaselmer]: https://github.com/lukaselmer
+
 # 0.5.0
 
 ### Features
