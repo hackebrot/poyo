@@ -95,17 +95,14 @@ def test_parse_multiline_string(string_data):
     assert parse_string(string_data) == expected
 
 
-@pytest.mark.parametrize('ymlfile', ['list-objects'])
+@pytest.mark.xfail(reason="poyo does not support list objects yet")
+@pytest.mark.parametrize("ymlfile", ["list-objects"])
 def test_parse_list_objects(string_data):
     expected = {
-        u'complicated': {
-            u'numbers': [{
-                    u'name': u'Hello',
-                    u'result': u'World',
-                }, {
-                    u'name': u'Question',
-                    u'result': u'Answer',
-                }
+        u"complicated": {
+            u"numbers": [
+                {u"name": u"Hello", u"result": u"World"},
+                {u"name": u"Question", u"result": u"Answer"},
             ]
         }
     }
